@@ -12,3 +12,35 @@ main {
 	font-weight: bold;
 	padding: 0.15rem;
 }
+
+.Searchbox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 5rem;
+
+	.input-search {
+		width: 150px;
+		height: 1.5rem;
+		margin-right: 3rem;
+	}
+	.wrap-btn {
+		display: flex;
+		text-align: center;
+	}
+	.category-btn {
+		font-size: 14px;
+		font-weight: 700;
+		margin: 0.5rem;
+		text-transform: uppercase;
+		background: black;
+		color: white;
+		border-radius: 3px;
+		border: none;
+		padding: 0.4rem;
+		&.isActive {
+			background-color: #9cebd5;
+			color: black;
+		}
+	}
+}
