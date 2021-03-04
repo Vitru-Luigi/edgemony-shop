@@ -4,7 +4,7 @@ import Main from './containers/Main';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
-import Products from './components/Products';
+import ProductList from './components/ProductList';
 import Loader from './components/Loader';
 import Message from './components/Message';
 
@@ -47,7 +47,7 @@ function App() {
 			<Header logo={logo} />
 			<Main>
 				<Hero cover={cover} description={description} title={title} />
-				{loading ? <Loader /> : <Products products={products} />}
+				{loading ? <Loader /> : <ProductList products={products} />}
 				{error && (
 					<>
 						<Message msg={errorMsg} />{' '}

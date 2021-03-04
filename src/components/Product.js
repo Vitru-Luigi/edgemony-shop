@@ -12,7 +12,7 @@ const Product = ({ product }) => {
 				<img src={image} alt='' />
 			</legend>
 
-			<div className='product-info'>
+			<article className='product-info'>
 				<div className='product-text'>
 					<h1>{title}</h1>
 					<h2>{category}</h2>
@@ -31,7 +31,7 @@ const Product = ({ product }) => {
 					</button>
 					<ProductModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} product={product} />
 				</div>
-			</div>
+			</article>
 		</fieldset>
 	);
 };
