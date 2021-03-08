@@ -35,7 +35,7 @@ function ProductModal({product, closeModal, isOpen, inCart, addToCart}) {
 						<hr />
 						<span className='price'>
 							<button disabled={disabled} id={product.id} className='detailsBtn' onClick={addtoCart}>
-								Add to Cart
+								{!disabled ? 'Add to Cart' : 'Already in Cart'}
 							</button>
 							<small>Price: </small>€ {product.price}
 						</span>

@@ -8,6 +8,31 @@
 	align-items: center;
 	justify-content: center;
 	pointer-events: none;
+	button {
+		margin-left: 1rem;
+		display: inline-block;
+		padding: 3px 5px;
+		box-sizing: border-box;
+		border: transparent;
+		border-radius: 3px;
+		font-size: 12px;
+		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		color: rgb(85, 73, 73);
+		background-color: #9cebd5;
+		cursor: pointer;
+		outline: none;
+		margin-right: 1rem;
+		&:hover {
+			background-color: #79b0a1;
+		}
+		&:disabled {
+			background-color: grey;
+			color: lightblue;
+			cursor: inherit;
+		}
+	}
 }
 
 .ProductModal.isOpen {

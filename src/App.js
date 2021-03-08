@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 
 import './components/Main.scss';
 import Main from './containers/Main';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Hero from './components/Hero';

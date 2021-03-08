@@ -15,10 +15,15 @@ function Header({logo, inCart}) {
 	return (
 		<header className='Header'>
 			<img src={logo} alt='headerLogo' className='logo' />
-			<span style={{color: 'white'}}>
-				{inCart.length > 0 && inCart.length}
-				{inCart.length > 0 && <h6>€ {totalOfCart()}</h6>}
-			</span>
+			{inCart.length > 0 && (
+				<span>
+					<small className='productsQty'>
+						<i class='fa fa-shopping-cart' aria-hidden='true'></i>
+						{inCart.length}
+					</small>
+					<small className='totalPrize'>€ {totalOfCart()}</small>
+				</span>
+			)}
 		</header>
 	);
 }
