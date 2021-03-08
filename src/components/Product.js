@@ -1,11 +1,11 @@
 import './Product.scss';
 import PropTypes from 'prop-types';
 import ProductModal from './ProductModal';
-import { useState } from 'react';
+import {useState} from 'react';
 
-const Product = ({ product }) => {
+const Product = ({product}) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const { category, description, image, price, title } = product;
+	const {category, description, image, price, title} = product;
 	return (
 		<fieldset className='Product'>
 			<legend className='product-img'>
