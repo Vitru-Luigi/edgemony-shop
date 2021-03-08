@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import Product from './Product';
+import Message from './Message';
 import './ProductList.scss';
 import PropTypes from 'prop-types';
 import Search from './Search';
@@ -20,6 +21,7 @@ const ProductList = ({products, categories}) => {
 				{filteredProducts.map((product, key) => (
 					<Product key={key} product={product} />
 				))}
+				{filteredProducts.length === 0 && <Message msg={'Product not found'} />}
 			</section>
 		</>
 	);
