@@ -1,10 +1,9 @@
 import './Product.scss';
 import PropTypes from 'prop-types';
-import ProductModal from './ProductModal';
-import {useState} from 'react';
+// import ProductModal from './ProductModal';
+// import {useState} from 'react';
 
-const Product = ({product}) => {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+const Product = ({product, openProductModal}) => {
 	const {category, description, image, price, title} = product;
 	return (
 		<fieldset className='Product'>
@@ -22,14 +21,7 @@ const Product = ({product}) => {
 					<p>
 						<span>Price € {price}</span>
 					</p>
-					<button
-						onClick={() => {
-							setIsModalOpen(true);
-						}}
-						type='button'>
-						View details
-					</button>
-					<ProductModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} product={product} />
+					<button onClick={openProductModal}>View details</button>
 				</div>
 			</article>
 		</fieldset>
