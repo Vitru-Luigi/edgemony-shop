@@ -17,7 +17,7 @@ function Alert({msg, retry, close}) {
 }
 
 Alert.propTypes = {
-	message: PropTypes.string.isRequired,
+	msg: PropTypes.string.isRequired,
 	retry: PropTypes.func.isRequired,
 	close: PropTypes.func.isRequired,
 };

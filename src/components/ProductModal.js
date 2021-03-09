@@ -1,30 +1,25 @@
 import {PropTypes} from 'prop-types';
-import {useEffect, useState} from 'react';
+// import {useEffect, useState} from 'react';
 
 import './ProductModal.scss';
 
-function ProductModal({product, closeModal, isOpen, inCart, addToCart}) {
-	const [disabled, setDisabled] = useState(false);
+function ProductModal({product, closeModal, isOpen, cart, setCart}) {
+	const isAlreadyInCart = () => cart.find((p) => p.id === product.id);
 
-	const addtoCart = () => {
-		if (inCart && !inCart.includes(product)) {
-			addToCart([...inCart, product]);
+	const toggleCart = () => {
+		if (isAlreadyInCart()) {
+			const newCart = cart.filter((p) => p.id !== product.id);
+			setCart(newCart);
+		} else {
+			setCart([...cart, {quantity: 1, ...product}]);
 		}
 	};
-
-	useEffect(() => {
-		if (inCart && inCart.includes(product)) {
-			setDisabled(true);
-		} else {
-			setDisabled(false);
-		}
-	}, [inCart, product]);
 
 	return (
 		<div className={`ProductModal ${isOpen ? `isOpen` : ''}`}>
 			<div className='overlay' onClick={closeModal} />
 			<div className='body'>
-				<button onClick={closeModal} title='close product modal' className='closeBtn'>
+				<button type='button' onClick={closeModal} title='close product modal' className='closeBtn'>
 					×
 				</button>
 				{!!product ? (
@@ -34,8 +29,8 @@ function ProductModal({product, closeModal, isOpen, inCart, addToCart}) {
 						<p>{product.description}</p>
 						<hr />
 						<span className='price'>
-							<button disabled={disabled} id={product.id} className='detailsBtn' onClick={addtoCart}>
-								{!disabled ? 'Add to Cart' : 'Already in Cart'}
+							<button className='detailsBtn' onClick={toggleCart}>
+								{!isAlreadyInCart() ? 'Add to Cart' : 'Remove To Cart'}
 							</button>
 							<small>Price: </small>€ {product.price}
 						</span>
@@ -50,6 +45,8 @@ ProductModal.propTypes = {
 	product: PropTypes.object,
 	closeModal: PropTypes.func.isRequired,
 	isOpen: PropTypes.bool.isRequired,
+	setCart: PropTypes.func,
+	cart: PropTypes.array.isRequired,
 };
 
 export default ProductModal;

@@ -1,18 +1,18 @@
 import './Header.scss';
 import HeaderCart from './HeaderCart';
 import PropTypes from 'prop-types';
-function Header({logo, inCart}) {
+function Header({logo, cart, products}) {
 	return (
 		<header className='Header'>
 			<img src={logo} alt='headerLogo' className='logo' />
-			{inCart.length > 0 && <HeaderCart inCart={inCart} />}
+			{!!cart.length && <HeaderCart cart={cart} products={products} />}
 		</header>
 	);
 }
 
 Header.propTypes = {
 	logo: PropTypes.string.isRequired,
-	inCart: PropTypes.array.isRequired,
+	cart: PropTypes.array.isRequired,
 };
 
 export default Header;

@@ -45,8 +45,7 @@ const App = () => {
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
 
-	const [inCart, setInCart] = useState([]);
-	console.log(inCart);
+	const [cart, setCart] = useState([]);
 
 	const [loading, setLoading] = useState(false);
 	const [apiError, setApiError] = useState(false);
@@ -65,13 +64,13 @@ const App = () => {
 	}, [retry]);
 	return (
 		<>
-			<Header logo={data.logo} inCart={inCart} />
+			<Header logo={data.logo} cart={cart} products={products} />
 			<Main>
 				<Hero cover={data.cover} description={data.description} title={data.title} />
 				{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}
 				{apiError && <Alert msg={apiError} close={() => setApiError('')} retry={() => setRetry(!retry)} />}
 			</Main>
-			<ProductModal inCart={inCart} addToCart={setInCart} isOpen={modalIsOpen} product={productInModal} closeModal={closeModal} />
+			<ProductModal cart={cart} setCart={setCart} isOpen={modalIsOpen} product={productInModal} closeModal={closeModal} />
 			<Footer title={data.title} />
 		</>
 	);

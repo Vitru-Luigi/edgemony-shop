@@ -1,31 +1,29 @@
 import PropTypes from 'prop-types';
 
-const HeaderCart = ({inCart}) => {
-	function totalOfCart() {
-		const total = inCart.map((obj) => {
-			return obj.price;
-		});
+const HeaderCart = ({cart, products}) => {
+	const totalPrice = cart.reduce((acc, cartItem) => {
+		const product = products.find((p) => p.id === cartItem.id);
+		return acc + product.price;
+		// return acc + product.price * quantity;
+	}, 0);
 
-		if (total.length > 0) {
-			const reducer = (accumulator, currentValue) => accumulator + currentValue;
-			return total.reduce(reducer);
-		}
-	}
+	console.log(cart);
+
 	return (
 		<div className='HeaderCart'>
 			<span>
 				<small className='productsQty'>
-					<i class='fa fa-shopping-cart' aria-hidden='true'></i>
-					{inCart.length}
+					<i className='fa fa-shopping-cart' aria-hidden='true'></i>
+					{cart.length}
 				</small>
-				<small className='totalPrize'>€ {totalOfCart()}</small>
+				<small className='totalPrize'>€ {totalPrice}</small>
 			</span>
 		</div>
 	);
 };
 
 HeaderCart.propTypes = {
-	inCart: PropTypes.array.isRequired,
+	cart: PropTypes.array.isRequired,
 };
 
 export default HeaderCart;
