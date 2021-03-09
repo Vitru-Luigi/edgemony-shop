@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const HeaderCart = ({cart, products}) => {
+const HeaderCart = ({cart, products, openCartModal}) => {
 	const totalPrice = cart.reduce((acc, cartItem) => {
 		const product = products.find((p) => p.id === cartItem.id);
 		return acc + product.price;
@@ -13,7 +13,7 @@ const HeaderCart = ({cart, products}) => {
 		<div className='HeaderCart'>
 			<span>
 				<small className='productsQty'>
-					<i className='fa fa-shopping-cart' aria-hidden='true'></i>
+					<i className='fas fa-shopping-cart' aria-hidden='true' onClick={openCartModal}></i>
 					{cart.length}
 				</small>
 				<small className='totalPrize'>€ {totalPrice}</small>
