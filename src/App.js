@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
 import ProductModal from './components/ProductModal';
+import CartModal from './components/CartModal';
 import ProductList from './components/ProductList';
 import Loader from './components/Loader';
 import Alert from './components/Alert';
@@ -17,30 +18,57 @@ import './App.scss';
 
 const App = () => {
 	const [productInModal, setProductInModal] = useState(null);
-	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const [productModalIsOpen, setProductModalIsOpen] = useState(false);
 
 	function openProductModal(product) {
 		console.log(product);
 		setProductInModal(product);
-		setModalIsOpen(true);
+		setProductModalIsOpen(true);
 	}
 
-	function closeModal() {
-		setModalIsOpen(false);
+	function closeProductModal() {
+		setProductModalIsOpen(false);
 		setTimeout(() => {
 			setProductInModal(null);
 		}, 500);
 	}
 
 	useEffect(() => {
-		if (modalIsOpen) {
+		if (productModalIsOpen) {
 			document.body.style.height = `100vh`;
 			document.body.style.overflow = `hidden`;
 		} else {
 			document.body.style.height = ``;
 			document.body.style.overflow = ``;
 		}
-	}, [modalIsOpen]);
+	}, [productModalIsOpen]);
+
+	// const [cartInModal, setPCartInModal] = useState(null);
+	const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
+
+	function openCartModal() {
+		// console.log(product);
+		// setCartInModal(product);
+		setCartModalIsOpen(true);
+		console.log('0');
+	}
+
+	function closeCartModal() {
+		setCartModalIsOpen(false);
+		// setTimeout(() => {
+		// 	setCartInModal(null);
+		// }, 500);
+	}
+
+	useEffect(() => {
+		if (productModalIsOpen) {
+			document.body.style.height = `100vh`;
+			document.body.style.overflow = `hidden`;
+		} else {
+			document.body.style.height = ``;
+			document.body.style.overflow = ``;
+		}
+	}, [productModalIsOpen]);
 
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
@@ -62,15 +90,22 @@ const App = () => {
 			.catch((err) => setApiError(err.message))
 			.finally(() => setLoading(false));
 	}, [retry]);
+
+	const totalPrice = cart.reduce((acc, cartItem) => {
+		const product = products.find((p) => p.id === cartItem.id);
+		return acc + product.price;
+		// return acc + product.price * quantity;
+	}, 0);
 	return (
 		<>
-			<Header logo={data.logo} cart={cart} products={products} />
+			<Header logo={data.logo} cart={cart} products={products} openCartModal={openCartModal} />
 			<Main>
 				<Hero cover={data.cover} description={data.description} title={data.title} />
 				{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}
 				{apiError && <Alert msg={apiError} close={() => setApiError('')} retry={() => setRetry(!retry)} />}
 			</Main>
-			<ProductModal cart={cart} setCart={setCart} isOpen={modalIsOpen} product={productInModal} closeModal={closeModal} />
+			<ProductModal cart={cart} setCart={setCart} isOpen={productModalIsOpen} product={productInModal} closeProductModal={closeProductModal} />
+			<CartModal cartModalIsOpen={cartModalIsOpen} closeCartModal={closeCartModal} cart={cart} setCart={setCart} totalPrice={totalPrice} />
 			<Footer title={data.title} />
 		</>
 	);

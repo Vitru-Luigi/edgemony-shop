@@ -3,7 +3,7 @@ import {PropTypes} from 'prop-types';
 
 import './ProductModal.scss';
 
-function ProductModal({product, closeModal, isOpen, cart, setCart}) {
+function ProductModal({product, closeProductModal, isOpen, cart, setCart}) {
 	const isAlreadyInCart = () => cart.find((p) => p.id === product.id);
 
 	const toggleCart = () => {
@@ -17,10 +17,10 @@ function ProductModal({product, closeModal, isOpen, cart, setCart}) {
 
 	return (
 		<div className={`ProductModal ${isOpen ? `isOpen` : ''}`}>
-			<div className='overlay' onClick={closeModal} />
+			<div className='overlay' onClick={closeProductModal} />
 			<div className='body'>
-				<button type='button' onClick={closeModal} title='close product modal' className='closeBtn'>
-					×
+				<button type='button' onClick={closeProductModal} title='close product modal' className='closeBtn'>
+					<i className='fas fa-window-close'></i>
 				</button>
 				{!!product ? (
 					<div className='content'>
@@ -30,7 +30,15 @@ function ProductModal({product, closeModal, isOpen, cart, setCart}) {
 						<hr />
 						<span className='price'>
 							<button className='detailsBtn' onClick={toggleCart}>
-								{!isAlreadyInCart() ? 'Add to Cart' : 'Remove To Cart'}
+								{!isAlreadyInCart() ? (
+									<span>
+										<i class='fas fa-cart-plus'></i> Add to Cart
+									</span>
+								) : (
+									<span>
+										<i class='fas fa-cart-arrow-down'></i> Remove To Cart
+									</span>
+								)}
 							</button>
 							<small>Price: </small>€ {product.price}
 						</span>
@@ -43,7 +51,7 @@ function ProductModal({product, closeModal, isOpen, cart, setCart}) {
 
 ProductModal.propTypes = {
 	product: PropTypes.object,
-	closeModal: PropTypes.func.isRequired,
+	closeProductModal: PropTypes.func.isRequired,
 	isOpen: PropTypes.bool.isRequired,
 	setCart: PropTypes.func,
 	cart: PropTypes.array.isRequired,
