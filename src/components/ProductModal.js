@@ -2,24 +2,24 @@ import {PropTypes} from 'prop-types';
 // import {useEffect, useState} from 'react';
 
 import './ProductModal.scss';
-
-function ProductModal({product, closeProductModal, isOpen, cart, setCart}) {
-	const isAlreadyInCart = () => cart.find((p) => p.id === product.id);
+// {product, closeModal, isOpen, addToCart, removeFromCart, inCart}
+function ProductModal({product, closeModal, isOpen, inCart, addToCart, removeFromCart}) {
+	// const inCart = () => cart.find((p) => p.id === product.id);
+	const productId = product && product.id;
 
 	const toggleCart = () => {
-		if (isAlreadyInCart()) {
-			const newCart = cart.filter((p) => p.id !== product.id);
-			setCart(newCart);
+		if (inCart) {
+			removeFromCart(productId);
 		} else {
-			setCart([...cart, {quantity: 1, ...product}]);
+			addToCart(productId);
 		}
 	};
 
 	return (
 		<div className={`ProductModal ${isOpen ? `isOpen` : ''}`}>
-			<div className='overlay' onClick={closeProductModal} />
+			<div className='overlay' onClick={closeModal} />
 			<div className='body'>
-				<button type='button' onClick={closeProductModal} title='close product modal' className='closeBtn'>
+				<button type='button' onClick={closeModal} title='close product modal' className='closeBtn'>
 					<i className='fas fa-window-close'></i>
 				</button>
 				{!!product ? (
@@ -30,7 +30,7 @@ function ProductModal({product, closeProductModal, isOpen, cart, setCart}) {
 						<hr />
 						<span className='price'>
 							<button className='detailsBtn' onClick={toggleCart}>
-								{!isAlreadyInCart() ? (
+								{!inCart ? (
 									<span>
 										<i class='fas fa-cart-plus'></i> Add to Cart
 									</span>
@@ -51,7 +51,7 @@ function ProductModal({product, closeProductModal, isOpen, cart, setCart}) {
 
 ProductModal.propTypes = {
 	product: PropTypes.object,
-	closeProductModal: PropTypes.func.isRequired,
+	closeModal: PropTypes.func.isRequired,
 	isOpen: PropTypes.bool.isRequired,
 	setCart: PropTypes.func,
 	cart: PropTypes.array.isRequired,

@@ -1,75 +1,35 @@
-import {PropTypes} from 'prop-types';
-import {useEffect} from 'react';
-
 import './CartModal.scss';
+import {PropTypes} from 'prop-types';
+import CartProduct from './CartProduct';
+import {formatPrice} from '../utils/utils';
 
-function CartModal({cartModalIsOpen, closeCartModal, cart, setCart, totalPrice}) {
-	console.log(cart);
-
-	const onClickRemoveCart = (product) => {
-		const newCart = cart.filter((p) => p.id !== product.id);
-		setCart(newCart);
-	};
-
-	useEffect(() => {
-		if (cart.length === 0) {
-			closeCartModal();
-		}
-	}, [cart, closeCartModal]);
-
-	const plusQty = (product) => {
-		// setCart([...cart, {quantity: product.quantity++, ...product}])
-		setCart([{quantity: product.quantity++, ...product}]);
-	};
-	const minusQty = (product) => {
-		if (product.quantity === 1) {
-			setCart([{quantity: product.quantity--, ...product}]);
-			onClickRemoveCart(product);
-		} else {
-			setCart([{quantity: product.quantity--, ...product}]);
-		}
-	};
-
+function CartModal({products, isOpen, close, totalPrice, removeFromCart, setProductQuantity}) {
 	return (
-		<div className={`CartModal ${cartModalIsOpen ? `isOpen` : ''}`}>
-			<div className='overlay' onClick={closeCartModal} />
-			<div className='body'>
-				<button type='button' onClick={closeCartModal} title='close product modal' className='closeBtn'>
-					<i className='fas fa-window-close'></i>
-				</button>
-				<ul>
-					{cart &&
-						cart.map((product) => {
-							console.log(product);
-							return (
-								<li>
-									<img src={product.image} alt='' />
-									<small className='title'>{product.title}</small>
-									<span className='price'>€ {product.price}</span>
-									<button type='button' className='removeBtn' onClick={() => onClickRemoveCart(product)}>
-										<i className='fas fa-trash-alt'></i>
-									</button>
-									<button type='button' onClick={() => minusQty(product)}>
-										-
-									</button>
-									<span className='quantity'>{product.quantity}</span>
-									<button type='button' onClick={() => plusQty(product)}>
-										+
-									</button>
-								</li>
-							);
-						})}
-				</ul>
-				<span className='totalPrice'>Totalprice: € {totalPrice.toFixed(2)}</span>
+		<div className={`CartModal ${isOpen ? `is-open` : ''}`}>
+			<div className='CartModal__overlay' onClick={close}></div>
+			<div className='CartModal__body'>
+				<header>
+					<button className='CartModal__close' onClick={close}>
+						X
+					</button>
+					<h2 className='CartModal__title'>Cart</h2>
+				</header>
+				<div className='CartModal__content'>
+					{products.length > 0 ? products.map((product) => <CartProduct key={product.id} product={product} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} />) : <p className='CartModal__content__empty'>The cart is empty</p>}
+				</div>
+				<footer>Total: {formatPrice(totalPrice)}</footer>
 			</div>
 		</div>
 	);
 }
 
 CartModal.propTypes = {
-	cart: PropTypes.object,
-	closeCartModal: PropTypes.func.isRequired,
-	cartModalIsOpen: PropTypes.bool.isRequired,
+	products: PropTypes.array.isRequired,
+	totalPrice: PropTypes.number.isRequired,
+	isOpen: PropTypes.bool.isRequired,
+	close: PropTypes.func.isRequired,
+	removeFromCart: PropTypes.func.isRequired,
+	setProductQuantity: PropTypes.func.isRequired,
 };
 
 export default CartModal;

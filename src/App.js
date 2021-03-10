@@ -6,7 +6,7 @@ import './components/Main.scss';
 import Main from './containers/Main';
 
 import Header from './components/Header';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 import Hero from './components/Hero';
 import ProductModal from './components/ProductModal';
 import CartModal from './components/CartModal';
@@ -18,55 +18,34 @@ import './App.scss';
 
 const App = () => {
 	const [productInModal, setProductInModal] = useState(null);
-	const [productModalIsOpen, setProductModalIsOpen] = useState(false);
+	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const [isCartOpen, setCartOpen] = useState(false);
 
 	function openProductModal(product) {
 		console.log(product);
 		setProductInModal(product);
-		setProductModalIsOpen(true);
+		setModalIsOpen(true);
 	}
 
-	function closeProductModal() {
-		setProductModalIsOpen(false);
+	function closeModal() {
+		setModalIsOpen(false);
 		setTimeout(() => {
 			setProductInModal(null);
 		}, 500);
 	}
 
 	useEffect(() => {
-		if (productModalIsOpen) {
+		if (modalIsOpen || isCartOpen) {
 			document.body.style.height = `100vh`;
 			document.body.style.overflow = `hidden`;
 		} else {
 			document.body.style.height = ``;
 			document.body.style.overflow = ``;
 		}
-	}, [productModalIsOpen]);
-
-	const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
-
-	function openCartModal() {
-		setCartModalIsOpen(true);
-	}
-
-	function closeCartModal() {
-		setCartModalIsOpen(false);
-	}
-
-	useEffect(() => {
-		if (cartModalIsOpen) {
-			document.body.style.height = `100vh`;
-			document.body.style.overflow = `hidden`;
-		} else {
-			document.body.style.height = ``;
-			document.body.style.overflow = ``;
-		}
-	}, [cartModalIsOpen]);
+	}, [modalIsOpen, isCartOpen]);
 
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
-
-	const [cart, setCart] = useState([]);
 
 	const [loading, setLoading] = useState(false);
 	const [apiError, setApiError] = useState(false);
@@ -84,31 +63,38 @@ const App = () => {
 			.finally(() => setLoading(false));
 	}, [retry]);
 
-	const totalPrice = cart.reduce((acc, cartItem) => {
-		const product = cart.find((p) => p.id === cartItem.id);
-		return acc + product.price * product.quantity;
-	}, 0);
+	const [cart, setCart] = useState([]);
 
-	const cartSize = cart.length;
+	const cartProducts = cart.map((cartItem) => {
+		const {price, image, title, id} = products.find((p) => p.id === cartItem.id);
+		return {price, image, title, id, quantity: cartItem.quantity};
+	});
 
-	// const cartProducts = () => {}
+	const cartTotal = cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+	function isInCart(product) {
+		return product != null && cart.find((p) => p.id === product.id) != null;
+	}
+	function addToCart(productId) {
+		setCart([...cart, {id: productId, quantity: 1}]);
+	}
+	function removeFromCart(productId) {
+		setCart(cart.filter((product) => product.id !== productId));
+	}
 
-	// const addToCart = () => {}
-	// const removeToCart = () => {}
-	// const setQuantity = () => {}
-	// const isAlreadyInCart = () => {}
+	function setProductQuantity(productId, quantity) {
+		setCart(cart.map((product) => (product.id === productId ? {...product, quantity} : product)));
+	}
 
 	return (
 		<>
-			<Header logo={data.logo} products={products} openCartModal={openCartModal} totalPrice={totalPrice} cartSize={cartSize} />
+			<Header logo={data.logo} title={data.title} cartTotal={cartTotal} cartSize={cart.length} products={products} onCartClick={() => setCartOpen(true)} />
 			<Main>
 				<Hero cover={data.cover} description={data.description} title={data.title} />
 				{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}
 				{apiError && <Alert msg={apiError} close={() => setApiError('')} retry={() => setRetry(!retry)} />}
 			</Main>
-			<ProductModal cart={cart} setCart={setCart} isOpen={productModalIsOpen} product={productInModal} closeProductModal={closeProductModal} />
-			<CartModal cartModalIsOpen={cartModalIsOpen} closeCartModal={closeCartModal} cart={cart} setCart={setCart} totalPrice={totalPrice} />
-			<Footer title={data.title} />
+			<ProductModal isOpen={modalIsOpen} product={productInModal} closeModal={closeModal} inCart={isInCart(productInModal)} addToCart={addToCart} removeFromCart={removeFromCart} />
+			<CartModal products={cartProducts} isOpen={isCartOpen} close={() => setCartOpen(false)} totalPrice={cartTotal} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} />
 		</>
 	);
 };
