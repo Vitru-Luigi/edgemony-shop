@@ -10,7 +10,7 @@ import Cart from './components/Cart';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
 import ProductModal from './components/ProductModal';
-import Modal from './components/RightSideBar';
+import RightSideBar from './components/RightSideBar';
 import ProductList from './components/ProductList';
 import Loader from './components/Loader';
 import Alert from './components/Alert';
@@ -19,11 +19,11 @@ import './App.scss';
 
 const App = () => {
 	const [productInModal, setProductInModal] = useState(null);
+
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [isCartOpen, setCartOpen] = useState(false);
 
 	const openProductModal = (product) => {
-		console.log(product);
 		setProductInModal(product);
 		setModalIsOpen(true);
 	};
@@ -72,19 +72,14 @@ const App = () => {
 	});
 
 	const cartTotal = cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
-	const isInCart = (product) => {
-		return product != null && cart.find((p) => p.id === product.id) != null;
-	};
-	const addToCart = (productId) => {
-		setCart([...cart, {id: productId, quantity: 1}]);
-	};
-	const removeFromCart = (productId) => {
-		setCart(cart.filter((product) => product.id !== productId));
-	};
 
-	const setProductQuantity = (productId, quantity) => {
-		setCart(cart.map((product) => (product.id === productId ? {...product, quantity} : product)));
-	};
+	const isInCart = (product) => product != null && cart.find((p) => p.id === product.id) != null;
+
+	const addToCart = (productId) => setCart([...cart, {id: productId, quantity: 1}]);
+
+	const removeFromCart = (productId) => setCart(cart.filter((product) => product.id !== productId));
+
+	const setProductQuantity = (productId, quantity) => setCart(cart.map((product) => (product.id === productId ? {...product, quantity} : product)));
 
 	return (
 		<>
@@ -95,9 +90,9 @@ const App = () => {
 				{apiError && <Alert msg={apiError} close={() => setApiError('')} retry={() => setRetry(!retry)} />}
 			</Main>
 			<ProductModal isOpen={modalIsOpen} product={productInModal} closeModal={closeModal} inCart={isInCart(productInModal)} addToCart={addToCart} removeFromCart={removeFromCart} />
-			<Modal isOpen={isCartOpen} close={() => setCartOpen(false)}>
+			<RightSideBar isOpen={isCartOpen} close={() => setCartOpen(false)}>
 				<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} totalPrice={cartTotal} />
-			</Modal>
+			</RightSideBar>
 			<Footer title={data.title} />
 		</>
 	);
