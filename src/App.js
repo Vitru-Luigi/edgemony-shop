@@ -6,10 +6,11 @@ import './components/Main.scss';
 import Main from './containers/Main';
 
 import Header from './components/Header';
+import Cart from './components/Cart';
 // import Footer from './components/Footer';
 import Hero from './components/Hero';
 import ProductModal from './components/ProductModal';
-import CartModal from './components/CartModal';
+import Modal from './components/RightSideBar';
 import ProductList from './components/ProductList';
 import Loader from './components/Loader';
 import Alert from './components/Alert';
@@ -94,7 +95,9 @@ const App = () => {
 				{apiError && <Alert msg={apiError} close={() => setApiError('')} retry={() => setRetry(!retry)} />}
 			</Main>
 			<ProductModal isOpen={modalIsOpen} product={productInModal} closeModal={closeModal} inCart={isInCart(productInModal)} addToCart={addToCart} removeFromCart={removeFromCart} />
-			<CartModal products={cartProducts} isOpen={isCartOpen} close={() => setCartOpen(false)} totalPrice={cartTotal} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} />
+			<Modal isOpen={isCartOpen} close={() => setCartOpen(false)} totalPrice={cartTotal}>
+				<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} />
+			</Modal>
 		</>
 	);
 };

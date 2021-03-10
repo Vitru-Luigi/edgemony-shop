@@ -1,13 +1,15 @@
 import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
 
-// import './CartProduct.scss';
+import './CartProduct.scss';
 
 function CartProduct({product, removeFromCart, setProductQuantity}) {
 	const {image, title, price, quantity, id} = product;
+
 	const increment = () => setProductQuantity(id, quantity + 1);
 	const decrement = () => setProductQuantity(id, quantity - 1);
 	const remove = () => removeFromCart(id);
+
 	return (
 		<div className='CartProduct'>
 			<img className='CartProduct__image' src={image} alt={title} />

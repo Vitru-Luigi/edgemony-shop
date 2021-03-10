@@ -1,4 +1,4 @@
-// .CartModal {
+// .RightSideBar {
 // 	position: fixed;
 // 	top: 0;
 // 	left: 0;
@@ -49,12 +49,12 @@
 // 	}
 // }
 
-// .CartModal.isOpen {
+// .RightSideBar.isOpen {
 // 	opacity: 1;
 // 	pointer-events: auto;
 // }
 
-// .CartModal .overlay {
+// .RightSideBar .overlay {
 // 	position: absolute;
 // 	top: 0;
 // 	left: 0;
@@ -66,11 +66,11 @@
 // 	opacity: 0;
 // }
 
-// .CartModal.isOpen .overlay {
+// .RightSideBar.isOpen .overlay {
 // 	opacity: 1;
 // }
 
-// .CartModal .body {
+// .RightSideBar .body {
 // 	// width: calc(100% - 20px - 20px);
 // 	height: 100vh;
 // 	border-radius: 5px;
@@ -85,19 +85,19 @@
 // 	transition: opacity 0.5s ease-in-out, transform 0.333s ease-out;
 // }
 
-// .CartModal.isOpen .body {
+// .RightSideBar.isOpen .body {
 // 	opacity: 1;
 // 	transform: translateY(0);
 // }
 
-// .CartModal img {
+// .RightSideBar img {
 // 	width: 100%;
 // 	height: 300px;
 // 	object-fit: contain;
 // 	object-position: center;
 // }
 
-// .CartModal .closeBtn {
+// .RightSideBar .closeBtn {
 // 	position: absolute;
 // 	top: 40px;
 // 	right: 40px;
@@ -106,7 +106,7 @@
 // 	padding: 0.2rem;
 // }
 
-.CartModal {
+.RightSideBar {
 	z-index: 1000;
 	position: fixed;
 	top: 0;
@@ -115,12 +115,12 @@
 	width: 100%;
 	pointer-events: none;
 }
-.CartModal.is-open {
+.RightSideBar.is-open {
 	opacity: 1;
 	pointer-events: auto;
 }
 
-.CartModal__overlay {
+.RightSideBar__overlay {
 	background-color: rgba(222, 222, 222, 0.85);
 	position: absolute;
 	width: 100%;
@@ -129,11 +129,11 @@
 	opacity: 0;
 	transition: opacity 0.5s ease-in-out;
 }
-.CartModal.is-open .CartModal__overlay {
+.RightSideBar.is-open .RightSideBar__overlay {
 	opacity: 1;
 }
 
-.CartModal__body {
+.RightSideBar__body {
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -149,27 +149,27 @@
 	opacity: 0;
 	transition: opacity 0.5s ease-in-out, transform 0.333s ease-out;
 }
-.CartModal.is-open .CartModal__body {
+.RightSideBar.is-open .RightSideBar__body {
 	opacity: 1;
 	transform: translateX(0);
 }
 
-.CartModal__content {
+.RightSideBar__content {
 	flex-grow: 1;
 	overflow: auto;
 }
 
-.CartModal__content__empty {
+.RightSideBar__content__empty {
 	text-align: center;
 	margin-top: 40px;
 }
 
-.CartModal footer {
+.RightSideBar footer {
 	text-align: center;
 }
 
 @media (min-width: 700px) {
-	.CartModal__body {
+	.RightSideBar__body {
 		width: 500px;
 	}
 }
