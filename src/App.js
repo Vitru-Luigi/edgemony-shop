@@ -95,8 +95,8 @@ const App = () => {
 				{apiError && <Alert msg={apiError} close={() => setApiError('')} retry={() => setRetry(!retry)} />}
 			</Main>
 			<ProductModal isOpen={modalIsOpen} product={productInModal} closeModal={closeModal} inCart={isInCart(productInModal)} addToCart={addToCart} removeFromCart={removeFromCart} />
-			<Modal isOpen={isCartOpen} close={() => setCartOpen(false)} totalPrice={cartTotal}>
-				<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} />
+			<Modal isOpen={isCartOpen} close={() => setCartOpen(false)}>
+				<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} totalPrice={cartTotal} />
 			</Modal>
 			<Footer title={data.title} />
 		</>

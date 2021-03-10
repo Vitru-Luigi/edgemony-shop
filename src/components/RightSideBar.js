@@ -2,9 +2,8 @@ import './RightSideBar.scss';
 import {PropTypes} from 'prop-types';
 // import CartProduct from './CartProduct';
 // import Cart from './Cart';
-import {formatPrice} from '../utils/utils';
 
-const RightSideBar = ({isOpen, close, totalPrice, children}) => (
+const RightSideBar = ({isOpen, close, children}) => (
 	<div className={`RightSideBar ${isOpen ? `is-open` : ''}`}>
 		<div className='RightSideBar__overlay' onClick={close}></div>
 		<div className='RightSideBar__body'>
@@ -14,7 +13,6 @@ const RightSideBar = ({isOpen, close, totalPrice, children}) => (
 				</button>
 			</header>
 			{children}
-			<footer>Total: {formatPrice(totalPrice)}</footer>
 		</div>
 	</div>
 );
