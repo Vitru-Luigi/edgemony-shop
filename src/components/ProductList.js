@@ -13,7 +13,7 @@ const ProductList = ({products, categories, cart, setCart, openProductModal}) =>
 	const [selectedCategories, setSelectedCategories] = useState([]);
 
 	const termRegexp = new RegExp(searchTerm, 'i');
-	const filteredProducts = products.filter((product) => product.title.search(termRegexp) !== -1 && (selectedCategories.length === 0 || selectedCategories.includes(product.category)));
+	const filteredProducts = products.filter((p) => p.title.search(termRegexp) !== -1 && (selectedCategories.length === 0 || selectedCategories.includes(p.category)));
 	return (
 		<>
 			<SearchBox>

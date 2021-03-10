@@ -20,30 +20,30 @@ import './App.scss';
 const App = () => {
 	const [productInModal, setProductInModal] = useState(null);
 
-	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const [isProductOpen, setProductOpen] = useState(false);
 	const [isCartOpen, setCartOpen] = useState(false);
 
 	const openProductModal = (product) => {
 		setProductInModal(product);
-		setModalIsOpen(true);
+		setProductOpen(true);
 	};
 
-	const closeModal = () => {
-		setModalIsOpen(false);
+	const closeProductModal = () => {
+		setProductOpen(false);
 		setTimeout(() => {
 			setProductInModal(null);
 		}, 500);
 	};
 
 	useEffect(() => {
-		if (modalIsOpen || isCartOpen) {
+		if (isProductOpen || isCartOpen) {
 			document.body.style.height = `100vh`;
 			document.body.style.overflow = `hidden`;
 		} else {
 			document.body.style.height = ``;
 			document.body.style.overflow = ``;
 		}
-	}, [modalIsOpen, isCartOpen]);
+	}, [isProductOpen, isCartOpen]);
 
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
@@ -71,7 +71,7 @@ const App = () => {
 		return {price, image, title, id, quantity: cartItem.quantity};
 	});
 
-	const cartTotal = cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+	const totalPrice = cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
 
 	const isInCart = (product) => product != null && cart.find((p) => p.id === product.id) != null;
 
@@ -81,17 +81,25 @@ const App = () => {
 
 	const setProductQuantity = (productId, quantity) => setCart(cart.map((product) => (product.id === productId ? {...product, quantity} : product)));
 
+	const resetError = () => setApiError('');
+
+	const toogleRetry = () => setRetry(!retry);
+
+	const openCartModal = () => setCartOpen(true);
+
+	const closeCartModal = () => setCartOpen(false);
+
 	return (
 		<>
-			<Header logo={data.logo} title={data.title} cartTotal={cartTotal} cartSize={cart.length} products={products} onCartClick={() => setCartOpen(true)} />
+			<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} products={products} onCartClick={openCartModal} />
 			<Main>
 				<Hero cover={data.cover} description={data.description} title={data.title} />
 				{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}
-				{apiError && <Alert msg={apiError} close={() => setApiError('')} retry={() => setRetry(!retry)} />}
+				{apiError && <Alert msg={apiError} close={resetError} retry={toogleRetry} />}
 			</Main>
-			<ProductModal isOpen={modalIsOpen} product={productInModal} closeModal={closeModal} inCart={isInCart(productInModal)} addToCart={addToCart} removeFromCart={removeFromCart} />
-			<RightSideBar isOpen={isCartOpen} close={() => setCartOpen(false)}>
-				<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} totalPrice={cartTotal} />
+			<ProductModal isOpen={isProductOpen} product={productInModal} close={closeProductModal} inCart={isInCart(productInModal)} addToCart={addToCart} removeFromCart={removeFromCart} />
+			<RightSideBar isOpen={isCartOpen} close={closeCartModal}>
+				<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} totalPrice={totalPrice} />
 			</RightSideBar>
 			<Footer title={data.title} />
 		</>

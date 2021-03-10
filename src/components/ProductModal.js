@@ -2,7 +2,7 @@ import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
 
 import './ProductModal.scss';
-const ProductModal = ({product, closeModal, isOpen, inCart, addToCart, removeFromCart}) => {
+const ProductModal = ({product, close, isOpen, inCart, addToCart, removeFromCart}) => {
 	const productId = product && product.id;
 
 	const toggleCart = () => {
@@ -15,9 +15,9 @@ const ProductModal = ({product, closeModal, isOpen, inCart, addToCart, removeFro
 
 	return (
 		<div className={`ProductModal ${isOpen ? `isOpen` : ''}`}>
-			<div className='overlay' onClick={closeModal} />
+			<div className='overlay' onClick={close} />
 			<div className='body'>
-				<button type='button' onClick={closeModal} title='close product modal' className='closeBtn'>
+				<button type='button' onClick={close} title='close product modal' className='closeBtn'>
 					<i className='fas fa-window-close'></i>
 				</button>
 				{!!product ? (
@@ -50,7 +50,7 @@ const ProductModal = ({product, closeModal, isOpen, inCart, addToCart, removeFro
 
 ProductModal.propTypes = {
 	product: PropTypes.object,
-	closeModal: PropTypes.func.isRequired,
+	close: PropTypes.func.isRequired,
 	isOpen: PropTypes.bool.isRequired,
 	setCart: PropTypes.func,
 	cart: PropTypes.array.isRequired,
