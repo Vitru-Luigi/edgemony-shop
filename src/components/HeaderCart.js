@@ -1,19 +1,17 @@
 import PropTypes from 'prop-types';
 
 import {formatPrice} from '../utils/utils';
-// import './HeaderCart.scss';
+import './HeaderCart.scss';
 
-function HeaderCart({cartTotal, cartSize, onCartClick}) {
-	return (
-		<div className='HeaderCart'>
-			{!!cartSize && <span className='price'>{formatPrice(cartTotal)}</span>}
-			<span className='icon' onClick={onCartClick}>
-				<i className='fas fa-shopping-cart'></i>
-				{!!cartSize && <span className='qty'>{cartSize}</span>}
-			</span>
-		</div>
-	);
-}
+const HeaderCart = ({cartTotal, cartSize, onCartClick}) => (
+	<div className='HeaderCart'>
+		{!!cartSize && <span className='price'>{formatPrice(cartTotal)}</span>}
+		<span className='icon' onClick={onCartClick}>
+			<i className='fas fa-shopping-cart'></i>
+			{!!cartSize && <span className='qty'>{cartSize}</span>}
+		</span>
+	</div>
+);
 
 HeaderCart.propTypes = {
 	products: PropTypes.array.isRequired,

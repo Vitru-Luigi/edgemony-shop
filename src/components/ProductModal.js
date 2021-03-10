@@ -1,10 +1,8 @@
 import {PropTypes} from 'prop-types';
-// import {useEffect, useState} from 'react';
+import {formatPrice} from '../utils/utils';
 
 import './ProductModal.scss';
-// {product, closeModal, isOpen, addToCart, removeFromCart, inCart}
-function ProductModal({product, closeModal, isOpen, inCart, addToCart, removeFromCart}) {
-	// const inCart = () => cart.find((p) => p.id === product.id);
+const ProductModal = ({product, closeModal, isOpen, inCart, addToCart, removeFromCart}) => {
 	const productId = product && product.id;
 
 	const toggleCart = () => {
@@ -40,14 +38,15 @@ function ProductModal({product, closeModal, isOpen, inCart, addToCart, removeFro
 									</span>
 								)}
 							</button>
-							<small>Price: </small>€ {product.price}
+							<small>Price: </small>
+							{formatPrice(product.price)}
 						</span>
 					</div>
 				) : null}
 			</div>
 		</div>
 	);
-}
+};
 
 ProductModal.propTypes = {
 	product: PropTypes.object,

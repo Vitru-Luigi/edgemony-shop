@@ -3,7 +3,7 @@ import {formatPrice} from '../utils/utils';
 
 import './CartProduct.scss';
 
-function CartProduct({product, removeFromCart, setProductQuantity}) {
+const CartProduct = ({product, removeFromCart, setProductQuantity}) => {
 	const {image, title, price, quantity, id} = product;
 
 	const increment = () => setProductQuantity(id, quantity + 1);
@@ -27,7 +27,7 @@ function CartProduct({product, removeFromCart, setProductQuantity}) {
 			</button>
 		</div>
 	);
-}
+};
 
 CartProduct.propTypes = {
 	product: PropTypes.object.isRequired,

@@ -1,7 +1,6 @@
 import './Product.scss';
 import PropTypes from 'prop-types';
-// import ProductModal from './ProductModal';
-// import {useState} from 'react';
+import {formatPrice} from '../utils/utils';
 
 const Product = ({product, openProductModal}) => {
 	const {category, description, image, price, title} = product;
@@ -19,7 +18,7 @@ const Product = ({product, openProductModal}) => {
 				</div>
 				<div className='product-price-btn'>
 					<p>
-						<span>Price € {price}</span>
+						<span>Price : {formatPrice(price)}</span>
 					</p>
 					<button onClick={openProductModal}>View details</button>
 				</div>
@@ -30,6 +29,7 @@ const Product = ({product, openProductModal}) => {
 
 Product.propTypes = {
 	product: PropTypes.object.isRequired,
+	openProductModal: PropTypes.func.isRequired,
 };
 
 export default Product;

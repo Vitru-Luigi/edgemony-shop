@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import HeaderCart from './HeaderCart';
 import './Header.scss';
 
-function Header({logo, title, cartTotal, cartSize, products, onCartClick}) {
-	return (
-		<header className='Header'>
-			<img src={logo} alt={title} />
-			<HeaderCart cartTotal={cartTotal} cartSize={cartSize} products={products} onCartClick={onCartClick} />
-		</header>
-	);
-}
+const Header = ({logo, title, cartTotal, cartSize, products, onCartClick}) => (
+	<header className='Header'>
+		<img src={logo} alt={title} />
+		<HeaderCart cartTotal={cartTotal} cartSize={cartSize} products={products} onCartClick={onCartClick} />
+	</header>
+);
 
 Header.propTypes = {
 	logo: PropTypes.string.isRequired,
