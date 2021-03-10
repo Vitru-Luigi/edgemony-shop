@@ -1,11 +1,11 @@
 import './Header.scss';
 import HeaderCart from './HeaderCart';
 import PropTypes from 'prop-types';
-function Header({logo, cart, products, openCartModal}) {
+function Header({logo, cart, openCartModal, totalPrice}) {
 	return (
 		<header className='Header'>
 			<img src={logo} alt='headerLogo' className='logo' />
-			{!!cart.length && <HeaderCart cart={cart} products={products} openCartModal={openCartModal} />}
+			{!!cart.length && <HeaderCart cart={cart} openCartModal={openCartModal} totalPrice={totalPrice} />}
 		</header>
 	);
 }

@@ -43,21 +43,14 @@ const App = () => {
 		}
 	}, [productModalIsOpen]);
 
-	// const [cartInModal, setPCartInModal] = useState(null);
 	const [cartModalIsOpen, setCartModalIsOpen] = useState(false);
 
 	function openCartModal() {
-		// console.log(product);
-		// setCartInModal(product);
 		setCartModalIsOpen(true);
-		console.log('0');
 	}
 
 	function closeCartModal() {
 		setCartModalIsOpen(false);
-		// setTimeout(() => {
-		// 	setCartInModal(null);
-		// }, 500);
 	}
 
 	useEffect(() => {
@@ -92,13 +85,14 @@ const App = () => {
 	}, [retry]);
 
 	const totalPrice = cart.reduce((acc, cartItem) => {
-		const product = products.find((p) => p.id === cartItem.id);
-		return acc + product.price;
+		const product = cart.find((p) => p.id === cartItem.id);
+		console.log(product);
+		return acc + product.price * product.quantity;
 		// return acc + product.price * quantity;
 	}, 0);
 	return (
 		<>
-			<Header logo={data.logo} cart={cart} products={products} openCartModal={openCartModal} />
+			<Header logo={data.logo} cart={cart} products={products} openCartModal={openCartModal} totalPrice={totalPrice} />
 			<Main>
 				<Hero cover={data.cover} description={data.description} title={data.title} />
 				{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}

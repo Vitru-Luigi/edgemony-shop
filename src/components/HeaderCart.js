@@ -1,12 +1,6 @@
 import PropTypes from 'prop-types';
 
-const HeaderCart = ({cart, products, openCartModal}) => {
-	const totalPrice = cart.reduce((acc, cartItem) => {
-		const product = products.find((p) => p.id === cartItem.id);
-		return acc + product.price;
-		// return acc + product.price * quantity;
-	}, 0);
-
+const HeaderCart = ({cart, openCartModal, totalPrice}) => {
 	console.log(cart);
 
 	return (

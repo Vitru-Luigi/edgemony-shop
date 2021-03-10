@@ -17,6 +17,19 @@ function CartModal({cartModalIsOpen, closeCartModal, cart, setCart, totalPrice})
 		}
 	}, [cart, closeCartModal]);
 
+	const plusQty = (product) => {
+		// setCart([...cart, {quantity: product.quantity++, ...product}])
+		setCart([{quantity: product.quantity++, ...product}]);
+	};
+	const minusQty = (product) => {
+		if (product.quantity === 1) {
+			setCart([{quantity: product.quantity--, ...product}]);
+			onClickRemoveCart(product);
+		} else {
+			setCart([{quantity: product.quantity--, ...product}]);
+		}
+	};
+
 	return (
 		<div className={`CartModal ${cartModalIsOpen ? `isOpen` : ''}`}>
 			<div className='overlay' onClick={closeCartModal} />
@@ -32,10 +45,16 @@ function CartModal({cartModalIsOpen, closeCartModal, cart, setCart, totalPrice})
 								<li>
 									<img src={product.image} alt='' />
 									<small className='title'>{product.title}</small>
-									<span className='quantity'>qty: {product.quantity}</span>
 									<span className='price'>€ {product.price}</span>
 									<button type='button' className='removeBtn' onClick={() => onClickRemoveCart(product)}>
 										<i className='fas fa-trash-alt'></i>
+									</button>
+									<button type='button' onClick={() => minusQty(product)}>
+										-
+									</button>
+									<span className='quantity'>{product.quantity}</span>
+									<button type='button' onClick={() => plusQty(product)}>
+										+
 									</button>
 								</li>
 							);
