@@ -1,14 +1,12 @@
 import PropTypes from 'prop-types';
 
-const HeaderCart = ({cart, openCartModal, totalPrice}) => {
-	console.log(cart);
-
+const HeaderCart = ({openCartModal, totalPrice, cartSize}) => {
 	return (
 		<div className='HeaderCart'>
 			<span>
 				<small className='productsQty'>
 					<i className='fas fa-shopping-cart' aria-hidden='true' onClick={openCartModal}></i>
-					{cart.length}
+					{cartSize}
 				</small>
 				<small className='totalPrize'>€ {totalPrice}</small>
 			</span>
@@ -17,7 +15,8 @@ const HeaderCart = ({cart, openCartModal, totalPrice}) => {
 };
 
 HeaderCart.propTypes = {
-	cart: PropTypes.array.isRequired,
+	totalPrice: PropTypes.number.isRequired,
+	cardSize: PropTypes.number.isRequired,
 };
 
 export default HeaderCart;

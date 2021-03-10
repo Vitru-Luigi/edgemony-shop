@@ -1,18 +1,19 @@
 import './Header.scss';
 import HeaderCart from './HeaderCart';
 import PropTypes from 'prop-types';
-function Header({logo, cart, openCartModal, totalPrice}) {
+function Header({logo, openCartModal, totalPrice, cartSize}) {
 	return (
 		<header className='Header'>
 			<img src={logo} alt='headerLogo' className='logo' />
-			{!!cart.length && <HeaderCart cart={cart} openCartModal={openCartModal} totalPrice={totalPrice} />}
+			{!!cartSize && <HeaderCart openCartModal={openCartModal} totalPrice={totalPrice} cartSize={cartSize} />}
 		</header>
 	);
 }
 
 Header.propTypes = {
 	logo: PropTypes.string.isRequired,
-	cart: PropTypes.array.isRequired,
+	totalPrice: PropTypes.number.isRequired,
+	cardSize: PropTypes.number.isRequired,
 };
 
 export default Header;

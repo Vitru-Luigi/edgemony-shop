@@ -54,14 +54,14 @@ const App = () => {
 	}
 
 	useEffect(() => {
-		if (productModalIsOpen) {
+		if (cartModalIsOpen) {
 			document.body.style.height = `100vh`;
 			document.body.style.overflow = `hidden`;
 		} else {
 			document.body.style.height = ``;
 			document.body.style.overflow = ``;
 		}
-	}, [productModalIsOpen]);
+	}, [cartModalIsOpen]);
 
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
@@ -86,13 +86,21 @@ const App = () => {
 
 	const totalPrice = cart.reduce((acc, cartItem) => {
 		const product = cart.find((p) => p.id === cartItem.id);
-		console.log(product);
 		return acc + product.price * product.quantity;
-		// return acc + product.price * quantity;
 	}, 0);
+
+	const cartSize = cart.length;
+
+	// const cartProducts = () => {}
+
+	// const addToCart = () => {}
+	// const removeToCart = () => {}
+	// const setQuantity = () => {}
+	// const isAlreadyInCart = () => {}
+
 	return (
 		<>
-			<Header logo={data.logo} cart={cart} products={products} openCartModal={openCartModal} totalPrice={totalPrice} />
+			<Header logo={data.logo} products={products} openCartModal={openCartModal} totalPrice={totalPrice} cartSize={cartSize} />
 			<Main>
 				<Hero cover={data.cover} description={data.description} title={data.title} />
 				{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}
