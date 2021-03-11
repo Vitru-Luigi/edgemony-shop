@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './styles/css/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { worker } from './mocks/browser';
+import {worker} from './mocks/browser';
 
 worker.start();
 

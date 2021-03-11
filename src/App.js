@@ -2,8 +2,7 @@ import data from './utils/data';
 import {fetchProducts, fetchCatogories} from './services/api';
 import {useEffect, useState} from 'react';
 
-import './components/Main.scss';
-import Main from './containers/Main';
+import './styles/scss/App.scss';
 
 import Header from './components/Header';
 import Cart from './components/Cart';
@@ -15,9 +14,7 @@ import ProductList from './components/ProductList';
 import Loader from './components/Loader';
 import Alert from './components/Alert';
 
-import {Body} from './styles';
-
-import './App.scss';
+import {Body, Main} from './styles';
 
 const App = () => {
 	const [productInModal, setProductInModal] = useState(null);

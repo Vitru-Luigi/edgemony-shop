@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+// MAIN //
+export const Main = styled.main`
+	min-height: calc(100vh - 180px);
+	margin-top: 40px;
+	display: flex;
+	justify-self: center;
+	align-items: center;
+	flex-direction: column;
+`;
+// END MAIN //
+
 export const Button = styled.button`
 	background-color: transparent;
 	font-family: inherit;
@@ -469,6 +480,14 @@ export const SearchIcon = styled.i`
 	padding-right: 10px;
 	color: black;
 	border-right: 1px solid #fff;
+`;
+
+// END SEARCH //
+
+// SearchBox //
+
+export const SearchBox = styled.section`
+	display: flex;
 `;
 
 // END SEARCH //

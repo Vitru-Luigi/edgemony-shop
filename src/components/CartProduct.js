@@ -2,8 +2,6 @@ import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
 import {Button, Qty, CartProductContainer, CartProductImage, CartProductTitle, CartProductPrice, CartProductQty} from '../styles';
 
-// import './CartProduct.scss';
-
 const CartProduct = ({product, removeFromCart, setProductQuantity}) => {
 	const {image, title, price, quantity, id} = product;
 

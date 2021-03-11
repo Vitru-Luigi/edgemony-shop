@@ -1,8 +1,7 @@
 import {useState} from 'react';
 import Product from './Product';
 import Message from './Message';
-import SearchBox from '../containers/SearchBox';
-import {ProductListContainer} from '../styles';
+import {ProductListContainer, SearchBox} from '../styles';
 import PropTypes from 'prop-types';
 import Search from './Search';
 
