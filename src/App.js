@@ -15,6 +15,8 @@ import ProductList from './components/ProductList';
 import Loader from './components/Loader';
 import Alert from './components/Alert';
 
+import {Body} from './styles';
+
 import './App.scss';
 
 const App = () => {
@@ -35,15 +37,15 @@ const App = () => {
 		}, 500);
 	};
 
-	useEffect(() => {
-		if (isProductOpen || isCartOpen) {
-			document.body.style.height = `100vh`;
-			document.body.style.overflow = `hidden`;
-		} else {
-			document.body.style.height = ``;
-			document.body.style.overflow = ``;
-		}
-	}, [isProductOpen, isCartOpen]);
+	// useEffect(() => {
+	// 	if (isProductOpen || isCartOpen) {
+	// 		document.body.style.height = `100vh`;
+	// 		document.body.style.overflow = `hidden`;
+	// 	} else {
+	// 		document.body.style.height = ``;
+	// 		document.body.style.overflow = ``;
+	// 	}
+	// }, [isProductOpen, isCartOpen]);
 
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
@@ -89,8 +91,10 @@ const App = () => {
 
 	const closeCartModal = () => setCartOpen(false);
 
+	console.log(isProductOpen);
+
 	return (
-		<>
+		<Body>
 			<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} onCartClick={openCartModal} />
 			<Main>
 				<Hero cover={data.cover} description={data.description} title={data.title} />
@@ -102,7 +106,7 @@ const App = () => {
 				<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} totalPrice={totalPrice} />
 			</RightSideBar>
 			<Footer title={data.title} />
-		</>
+		</Body>
 	);
 };
 

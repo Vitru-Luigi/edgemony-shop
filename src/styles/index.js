@@ -60,6 +60,14 @@ export const CategoriesFilter = styled.div`
 // 	</button>
 // );
 
+// BODY //
+export const Body = styled.div`
+	/* height: 100vh; */
+	/* overflow: hidden; */
+	/* background-color: red; */
+`;
+// END BODY //
+
 // CARDPRODUCT //
 
 export const CartProductContainer = styled.div`
@@ -324,31 +332,7 @@ export const ProductModalContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	pointer-events: none;
-	i {
-		font-size: 18px;
-	}
-	button {
-		display: inline-block;
-		box-sizing: border-box;
-		border: transparent;
-		border-radius: 3px;
-		font-size: 12px;
-		font-weight: 900;
-		text-transform: uppercase;
-		color: rgb(85, 73, 73);
-		cursor: pointer;
-		outline: none;
-		margin-right: 1rem;
-		&:hover {
-			background-color: #79b0a1;
-		}
-		&:disabled {
-			background-color: grey;
-			color: lightblue;
-			cursor: inherit;
-		}
-	}
+	${({isOpen}) => (isOpen ? 'opacity: 1;z-index: 100' : 'opacity: 0; z-index: -100')};
 `;
 
 export const ProductModalOverlay = styled.div`
@@ -358,10 +342,8 @@ export const ProductModalOverlay = styled.div`
 	width: 100%;
 	height: 100%;
 	background-color: rgba(222, 222, 222, 0.85);
-	cursor: pointer;
 	transition: opacity 0.5s ease-in-out;
-	opacity: 0;
-	${({isOpen}) => isOpen && 'background-color: yellow'}
+	${({isOpen}) => (isOpen ? 'opacity: 1; cursor: pointer' : 'opacity: 0; cursor: none')}
 `;
 
 export const ProductModalBody = styled.div`
@@ -374,9 +356,28 @@ export const ProductModalBody = styled.div`
 	margin-left: 20px;
 	margin-right: 20px;
 	padding: 30px;
-	opacity: 0;
-	transform: translateY(20px);
 	transition: opacity 0.5s ease-in-out, transform 0.333s ease-out;
+	${({isOpen}) => (isOpen ? 'opacity: 1; translateY(0)' : 'opacity: 0; translateY(20px)')};
+`;
+
+export const ProductModalContent = styled.div``;
+
+export const ProductModalImage = styled.img`
+	width: 100%;
+	height: 500px;
+	object-fit: contain;
+	object-position: center;
+	border: 1px solid red;
+`;
+
+export const ProductModalTitle = styled.h2``;
+
+export const ProductModalDescription = styled.p``;
+
+export const ProductModalPrice = styled.span`
+	font-size: 24px;
+	text-align: right;
+	font-weight: bold;
 `;
 
 // End ProductModal //
