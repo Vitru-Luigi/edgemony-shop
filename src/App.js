@@ -37,16 +37,6 @@ const App = () => {
 		}, 500);
 	};
 
-	// useEffect(() => {
-	// 	if (isProductOpen || isCartOpen) {
-	// 		document.body.style.height = `100vh`;
-	// 		document.body.style.overflow = `hidden`;
-	// 	} else {
-	// 		document.body.style.height = ``;
-	// 		document.body.style.overflow = ``;
-	// 	}
-	// }, [isProductOpen, isCartOpen]);
-
 	const [products, setProducts] = useState([]);
 	const [categories, setCategories] = useState([]);
 

@@ -1,19 +1,19 @@
-import './RightSideBar.scss';
+// import './RightSideBar.scss';
 import {PropTypes} from 'prop-types';
-import {Button} from '../styles';
+import {RightSideBarContainer, RightSideBarOverlay, RightSideBarBody, Button, RightSideBarHeader} from '../styles';
 
 const RightSideBar = ({isOpen, close, children}) => (
-	<div className={`RightSideBar ${isOpen ? `is-open` : ''}`}>
-		<div className='RightSideBar__overlay' onClick={close}></div>
-		<div className='RightSideBar__body'>
-			<header>
+	<RightSideBarContainer isOpen={isOpen}>
+		<RightSideBarOverlay isOpen={isOpen} onClick={close}></RightSideBarOverlay>
+		<RightSideBarBody isOpen={isOpen}>
+			<RightSideBarHeader>
 				<Button onClick={close}>
 					<i className='fas fa-window-close'></i>
 				</Button>
-			</header>
+			</RightSideBarHeader>
 			{children}
-		</div>
-	</div>
+		</RightSideBarBody>
+	</RightSideBarContainer>
 );
 
 RightSideBar.propTypes = {

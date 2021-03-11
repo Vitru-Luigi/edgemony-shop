@@ -380,7 +380,45 @@ export const ProductModalPrice = styled.span`
 	font-weight: bold;
 `;
 
-// End ProductModal //
+// END ProductModal //
+
+// RightSideBar //
+export const RightSideBarContainer = styled.div`
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	${({isOpen}) => (isOpen ? 'opacity: 1;z-index: 100' : 'opacity: 0; z-index: -100')};
+`;
+export const RightSideBarOverlay = styled.div`
+	background-color: rgba(222, 222, 222, 0.85);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transition: opacity 0.5s ease-in-out;
+	${({isOpen}) => (isOpen ? 'opacity: 1' : 'opacity: 0')};
+`;
+
+export const RightSideBarBody = styled.div`
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	box-sizing: border-box;
+	box-shadow: 0 2px 36px rgba(0, 0, 0, 0.25);
+	transition: opacity 0.5s ease-in-out, transform 0.333s ease-out;
+	${({isOpen}) => (isOpen ? 'opacity: 1; translateX(0)' : 'opacity: 0; translateX(100%)')};
+`;
+
+export const RightSideBarHeader = styled.header``;
+
+// END RightSideBar //
 
 // SEARCH //
 export const SearchContainer = styled.div`
