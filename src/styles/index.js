@@ -10,6 +10,8 @@ export const Main = styled.main`
 `;
 // END MAIN //
 
+// BUTTON //
+
 export const Button = styled.button`
 	background-color: transparent;
 	font-family: inherit;
@@ -24,13 +26,19 @@ export const Button = styled.button`
 	cursor: pointer;
 	text-transform: capitalize;
 	&:hover {
-		background-color: #79b0a1;
+		background-color: #9eaca8;
 	}
+	&:disabled {
+		background-color: #7e5f5f;
+	}
+	${({isSelected}) => isSelected && 'background-color: coral;'};
 	@media screen and (max-width: 880px) {
 		font-size: 8px;
 		padding: 5px;
 	}
 `;
+
+// END BUTTON //
 
 // export const BlueButton = styled(Button)`
 // 	color: black;
@@ -161,6 +169,7 @@ export const HeaderContainer = styled.header`
 	align-items: center;
 	z-index: 100;
 `;
+
 export const HeaderImage = styled.img`
 	width: 200px;
 `;
@@ -371,7 +380,9 @@ export const ProductModalContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	${({isOpen}) => (isOpen ? 'opacity: 1;z-index: 100' : 'opacity: 0; z-index: -100')};
+	z-index: 100;
+	transition: opacity 0.5s ease-in-out;
+	${({isOpen}) => (isOpen ? 'opacity: 1;pointer-events: auto;' : 'opacity: 0; pointer-events: none;')};
 `;
 
 export const ProductModalOverlay = styled.div`
@@ -395,7 +406,7 @@ export const ProductModalBody = styled.div`
 	margin-left: 20px;
 	margin-right: 20px;
 	padding: 30px;
-	transition: opacity 0.5s ease-in-out, transform 0.333s ease-out;
+	transition: opacity 0.5s ease-in-out, transform 0.333s ease-in-out;
 	${({isOpen}) => (isOpen ? 'opacity: 1; translateY(0)' : 'opacity: 0; translateY(20px)')};
 `;
 
@@ -403,10 +414,9 @@ export const ProductModalContent = styled.div``;
 
 export const ProductModalImage = styled.img`
 	width: 100%;
-	height: 500px;
+	height: 300px;
 	object-fit: contain;
 	object-position: center;
-	border: 1px solid red;
 `;
 
 export const ProductModalTitle = styled.h2``;
@@ -428,7 +438,7 @@ export const RightSideBarContainer = styled.div`
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	${({isOpen}) => (isOpen ? 'opacity: 1;z-index: 100' : 'opacity: 0; z-index: -100')};
+	${({isOpen}) => (isOpen ? 'opacity: 1;pointer-events: auto;z-index: 200' : 'opacity: 0; pointer-events: none; z-index: -100')};
 `;
 export const RightSideBarOverlay = styled.div`
 	background-color: rgba(222, 222, 222, 0.85);

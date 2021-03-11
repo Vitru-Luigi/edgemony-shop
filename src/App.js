@@ -78,8 +78,6 @@ const App = () => {
 
 	const closeCartModal = () => setCartOpen(false);
 
-	console.log(isProductOpen);
-
 	return (
 		<Body>
 			<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} onCartClick={openCartModal} />

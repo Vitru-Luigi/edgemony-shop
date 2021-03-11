@@ -2,7 +2,6 @@ import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
 import {ProductModalContainer, ProductModalOverlay, ProductModalBody, ProductModalContent, ProductModalImage, ProductModalTitle, ProductModalDescription, ProductModalPrice, Button} from '../styles';
 
-// import './ProductModal.scss';
 const ProductModal = ({product, close, isOpen, inCart, addToCart, removeFromCart}) => {
 	const productId = product && product.id;
 
@@ -54,7 +53,6 @@ ProductModal.propTypes = {
 	close: PropTypes.func.isRequired,
 	isOpen: PropTypes.bool.isRequired,
 	setCart: PropTypes.func,
-	cart: PropTypes.array.isRequired,
 };
 
 export default ProductModal;

@@ -17,12 +17,8 @@ const RightSideBar = ({isOpen, close, children}) => (
 );
 
 RightSideBar.propTypes = {
-	products: PropTypes.array.isRequired,
-	totalPrice: PropTypes.number.isRequired,
 	isOpen: PropTypes.bool.isRequired,
 	close: PropTypes.func.isRequired,
-	removeFromCart: PropTypes.func.isRequired,
-	setProductQuantity: PropTypes.func.isRequired,
 };
 
 export default RightSideBar;
