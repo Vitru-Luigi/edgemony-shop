@@ -381,3 +381,56 @@ export const ProductModalPrice = styled.span`
 `;
 
 // End ProductModal //
+
+// SEARCH //
+export const SearchContainer = styled.div`
+	position: relative;
+	width: 180px;
+	height: 40px;
+	margin-right: 3.5rem;
+	@media screen and (max-width: 880px) {
+		font-size: 8px;
+		padding: 5px;
+	}
+`;
+
+export const SearchInput = styled.input`
+	position: absolute;
+	// top: 0;
+	// left: 0;
+	width: 180px;
+	height: 40px;
+	background-color: transparent;
+	font-family: inherit;
+	border: 1px solid rgba(41, 15, 15, 0.171) !important;
+	outline: none;
+	border-radius: 4px;
+	padding: 0 10px 0 35px;
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	color: black;
+	@media screen and (max-width: 880px) {
+		font-size: 8px;
+		padding: 5px;
+		width: 120px;
+		height: 20px;
+		padding: 0 10px 0 35px;
+		i {
+			position: absolute;
+			top: 33% !important;
+			left: 10px;
+		}
+	}
+`;
+export const SearchIcon = styled.i`
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	padding-right: 10px;
+	color: black;
+	border-right: 1px solid #fff;
+`;
+
+// END SEARCH //

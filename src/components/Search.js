@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Search.scss';
+import {SearchContainer, SearchInput, SearchIcon} from '../styles';
 
 const Search = ({setSearchTerm}) => {
 	return (
-		<div className='Search'>
-			<input type='text' onChange={(e) => setSearchTerm(e.target.value)} placeholder='Search...' />
-			<i className='fa fa-search'></i>
-		</div>
+		<SearchContainer>
+			<SearchInput type='text' onChange={(e) => setSearchTerm(e.target.value)} placeholder='Search...' />
+			<SearchIcon className='fa fa-search'></SearchIcon>
+		</SearchContainer>
 	);
 };
 
