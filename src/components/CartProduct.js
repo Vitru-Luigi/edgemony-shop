@@ -1,6 +1,6 @@
 import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
-import {Button, Qty, CartProductContainer, CartProductImage, CartProductTitle, CartProductPrice, CartProductQty} from '../styles/Style';
+import {Button, Qty, CartProductContainer, CartProductImage, CartProductTitle, CartProductPrice, CartProductQty} from '../styles';
 
 // import './CartProduct.scss';
 

@@ -16,7 +16,6 @@ import Loader from './components/Loader';
 import Alert from './components/Alert';
 
 import './App.scss';
-// import {Button} from './styles/Style';
 
 const App = () => {
 	const [productInModal, setProductInModal] = useState(null);
@@ -92,7 +91,7 @@ const App = () => {
 
 	return (
 		<>
-			<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} products={products} onCartClick={openCartModal} />
+			<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} onCartClick={openCartModal} />
 			<Main>
 				<Hero cover={data.cover} description={data.description} title={data.title} />
 				{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}

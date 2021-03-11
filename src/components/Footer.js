@@ -1,13 +1,13 @@
-import './Footer.scss';
 import PropTypes from 'prop-types';
 import date from '../utils/getYear';
+import {FooterContainer, FooterNav} from '../styles';
 
-const Footer = ({ title }) => (
-	<footer className='Footer'>
-		<nav>
+const Footer = ({title}) => (
+	<FooterContainer>
+		<FooterNav>
 			{date} &copy; {title}
-		</nav>
-	</footer>
+		</FooterNav>
+	</FooterContainer>
 );
 
 Footer.propTypes = {

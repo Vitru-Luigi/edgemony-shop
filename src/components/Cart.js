@@ -1,8 +1,7 @@
-import './Cart.scss';
 import CartProduct from './CartProduct';
 import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
-import {CartContainer, CartTitle, CartMsg} from '../styles/Style';
+import {CartContainer, CartTitle, CartMsg} from '../styles';
 
 const Cart = ({products, setProductQuantity, removeFromCart, totalPrice}) => {
 	return (

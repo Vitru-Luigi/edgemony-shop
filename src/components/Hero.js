@@ -1,12 +1,12 @@
-import './Hero.scss';
 import PropTypes from 'prop-types';
+import {HeroContainer, HeroTitle, HeroImage, HeroDescription} from '../styles';
 
-const Hero = ({ cover, description, title }) => (
-	<section className='Hero'>
-		<h1>{title}</h1>
-		<img src={cover} alt='' />
-		<h2>{description}</h2>
-	</section>
+const Hero = ({cover, description, title}) => (
+	<HeroContainer>
+		<HeroTitle>{title}</HeroTitle>
+		<HeroImage src={cover} alt='' />
+		<HeroDescription>{description}</HeroDescription>
+	</HeroContainer>
 );
 
 Hero.propTypes = {

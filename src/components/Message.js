@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import './Message.scss';
+import {MessageContainer} from '../styles';
 
-const Message = ({msg}) => <div className='Message'>{msg}</div>;
+const Message = ({msg}) => <MessageContainer>{msg}</MessageContainer>;
 
 Message.propTypes = {
 	msg: PropTypes.string,

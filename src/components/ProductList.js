@@ -2,7 +2,7 @@ import {useState} from 'react';
 import Product from './Product';
 import Message from './Message';
 import SearchBox from '../containers/SearchBox';
-import './ProductList.scss';
+import {ProductListContainer} from '../styles';
 import PropTypes from 'prop-types';
 import Search from './Search';
 
@@ -20,12 +20,12 @@ const ProductList = ({products, categories, cart, setCart, openProductModal}) =>
 				<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 				<CategoriesFilter categories={categories} selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
 			</SearchBox>
-			<section className='ProductList'>
+			<ProductListContainer>
 				{filteredProducts.map((product, key) => (
 					<Product key={key} product={product} cart={cart} setCart={setCart} openProductModal={() => openProductModal(product)} />
 				))}
 				{filteredProducts.length === 0 && <Message msg={'Product not found'} />}
-			</section>
+			</ProductListContainer>
 		</>
 	);
 };

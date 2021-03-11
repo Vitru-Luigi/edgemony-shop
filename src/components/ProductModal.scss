@@ -1,55 +1,55 @@
-.ProductModal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	pointer-events: none;
-	i {
-		font-size: 18px;
-	}
-	button {
-		display: inline-block;
-		box-sizing: border-box;
-		border: transparent;
-		border-radius: 3px;
-		font-size: 12px;
-		font-weight: 900;
-		text-transform: uppercase;
-		color: rgb(85, 73, 73);
-		cursor: pointer;
-		outline: none;
-		margin-right: 1rem;
-		&:hover {
-			background-color: #79b0a1;
-		}
-		&:disabled {
-			background-color: grey;
-			color: lightblue;
-			cursor: inherit;
-		}
-	}
-}
+// .ProductModal {
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	width: 100vw;
+// 	height: 100vh;
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: center;
+// 	pointer-events: none;
+// 	i {
+// 		font-size: 18px;
+// 	}
+// 	button {
+// 		display: inline-block;
+// 		box-sizing: border-box;
+// 		border: transparent;
+// 		border-radius: 3px;
+// 		font-size: 12px;
+// 		font-weight: 900;
+// 		text-transform: uppercase;
+// 		color: rgb(85, 73, 73);
+// 		cursor: pointer;
+// 		outline: none;
+// 		margin-right: 1rem;
+// 		&:hover {
+// 			background-color: #79b0a1;
+// 		}
+// 		&:disabled {
+// 			background-color: grey;
+// 			color: lightblue;
+// 			cursor: inherit;
+// 		}
+// 	}
+// }
 
 .ProductModal.isOpen {
 	opacity: 1;
 	pointer-events: auto;
 }
 
-.ProductModal .overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(222, 222, 222, 0.85);
-	cursor: pointer;
-	transition: opacity 0.5s ease-in-out;
-	opacity: 0;
-}
+// .ProductModal .overlay {
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	width: 100%;
+// 	height: 100%;
+// 	background-color: rgba(222, 222, 222, 0.85);
+// 	cursor: pointer;
+// 	transition: opacity 0.5s ease-in-out;
+// 	opacity: 0;
+// }
 
 .ProductModal.isOpen .overlay {
 	opacity: 1;

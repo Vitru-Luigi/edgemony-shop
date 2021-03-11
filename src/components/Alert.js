@@ -1,17 +1,12 @@
 import {PropTypes} from 'prop-types';
-
-import './Alert.scss';
+import {AlertContainer, AlertMsg, Button} from '../styles';
 
 const Alert = ({msg, retry, close}) => (
-	<div className='Alert'>
-		<span className='Alert__message'>{msg}</span>
-		<button type='button' className='Alert__retry' onClick={() => retry()}>
-			Retry
-		</button>
-		<button type='button' className='Alert__close' onClick={() => close()}>
-			X
-		</button>
-	</div>
+	<AlertContainer>
+		<AlertMsg>{msg}</AlertMsg>
+		<Button onClick={() => retry()}>Retry</Button>
+		<Button onClick={() => close()}>X</Button>
+	</AlertContainer>
 );
 
 Alert.propTypes = {

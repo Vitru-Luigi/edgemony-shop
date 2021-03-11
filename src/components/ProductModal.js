@@ -1,5 +1,6 @@
 import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
+import {ProductModalContainer, ProductModalOverlay, ProductModalBody} from '../styles';
 
 import './ProductModal.scss';
 const ProductModal = ({product, close, isOpen, inCart, addToCart, removeFromCart}) => {
@@ -14,9 +15,9 @@ const ProductModal = ({product, close, isOpen, inCart, addToCart, removeFromCart
 	};
 
 	return (
-		<div className={`ProductModal ${isOpen ? `isOpen` : ''}`}>
-			<div className='overlay' onClick={close} />
-			<div className='body'>
+		<ProductModalContainer isOpen={isOpen} className={`ProductModal ${isOpen ? `isOpen` : ''}`}>
+			<ProductModalOverlay onClick={close} />
+			<ProductModalBody>
 				<button type='button' onClick={close} title='close product modal' className='closeBtn'>
 					<i className='fas fa-window-close'></i>
 				</button>
@@ -43,8 +44,8 @@ const ProductModal = ({product, close, isOpen, inCart, addToCart, removeFromCart
 						</span>
 					</div>
 				) : null}
-			</div>
-		</div>
+			</ProductModalBody>
+		</ProductModalContainer>
 	);
 };
 

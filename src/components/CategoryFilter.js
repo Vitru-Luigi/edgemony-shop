@@ -1,7 +1,5 @@
 import {PropTypes} from 'prop-types';
-import {Button} from '../styles/Style';
-
-// import './CategoryFilter.scss';
+import {Button} from '../styles';
 
 const CategoryFilter = ({name, selectedCategories, setSelectedCategories}) => {
 	const isSelected = selectedCategories.includes(name);
