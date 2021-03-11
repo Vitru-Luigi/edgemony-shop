@@ -1,6 +1,7 @@
 import {PropTypes} from 'prop-types';
+import {Button} from '../styles/Style';
 
-import './CategoryFilter.scss';
+// import './CategoryFilter.scss';
 
 const CategoryFilter = ({name, selectedCategories, setSelectedCategories}) => {
 	const isSelected = selectedCategories.includes(name);
@@ -11,9 +12,9 @@ const CategoryFilter = ({name, selectedCategories, setSelectedCategories}) => {
 	};
 
 	return (
-		<button key={name} className={className} onClick={toggleCategory}>
+		<Button key={name} className={className} onClick={toggleCategory}>
 			{name}
-		</button>
+		</Button>
 	);
 };
 

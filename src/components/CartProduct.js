@@ -1,7 +1,8 @@
 import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
+import {Button, Qty, CartProductContainer, CartProductImage, CartProductTitle, CartProductPrice, CartProductQty} from '../styles/Style';
 
-import './CartProduct.scss';
+// import './CartProduct.scss';
 
 const CartProduct = ({product, removeFromCart, setProductQuantity}) => {
 	const {image, title, price, quantity, id} = product;
@@ -11,21 +12,19 @@ const CartProduct = ({product, removeFromCart, setProductQuantity}) => {
 	const remove = () => removeFromCart(id);
 
 	return (
-		<div className='CartProduct'>
-			<img className='CartProduct__image' src={image} alt={title} />
-			<h3 className='CartProduct__title'>{title}</h3>
-			<div className='CartProduct__quantity'>
-				<button onClick={decrement} disabled={quantity === 1}>
+		<CartProductContainer>
+			<CartProductImage src={image} alt={title} />
+			<CartProductTitle>{title}</CartProductTitle>
+			<CartProductQty>
+				<Button onClick={decrement} disabled={quantity === 1}>
 					-
-				</button>
-				<span>{quantity}</span>
-				<button onClick={increment}>+</button>
-			</div>
-			<p className='CartProduct__price'>{formatPrice(price)}</p>
-			<button className='CartProduct__remove' onClick={remove}>
-				Remove
-			</button>
-		</div>
+				</Button>
+				<Qty>{quantity}</Qty>
+				<Button onClick={increment}>+</Button>
+			</CartProductQty>
+			<CartProductPrice>{formatPrice(price)}</CartProductPrice>
+			<Button onClick={remove}>Remove</Button>
+		</CartProductContainer>
 	);
 };
 

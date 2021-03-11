@@ -16,6 +16,7 @@ import Loader from './components/Loader';
 import Alert from './components/Alert';
 
 import './App.scss';
+// import {Button} from './styles/Style';
 
 const App = () => {
 	const [productInModal, setProductInModal] = useState(null);

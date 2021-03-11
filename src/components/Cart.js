@@ -2,11 +2,12 @@ import './Cart.scss';
 import CartProduct from './CartProduct';
 import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
+import {CartContainer, CartTitle, CartMsg} from '../styles/Style';
 
 const Cart = ({products, setProductQuantity, removeFromCart, totalPrice}) => {
 	return (
-		<div className='Cart'>
-			<h2 className='Cart__title'>Cart</h2>
+		<CartContainer>
+			<CartTitle>Cart</CartTitle>
 			{!!products.length ? (
 				products.map((product) => (
 					<>
@@ -15,9 +16,9 @@ const Cart = ({products, setProductQuantity, removeFromCart, totalPrice}) => {
 					</>
 				))
 			) : (
-				<p className='CartModal__content__empty'>The cart is empty</p>
+				<CartMsg>The cart is empty</CartMsg>
 			)}
-		</div>
+		</CartContainer>
 	);
 };
 
