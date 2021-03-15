@@ -38,15 +38,15 @@ const border = theme.variants('mode', 'variant', {
 	info: {light: 'orange', dark: 'darkorange'},
 });
 
-const shadow = theme.variants('mode', 'variant', {
-	default: {light: '#000000', dark: '#ffffff'},
-	primary: {light: 'blue', dark: 'darkblue'},
-	secondary: {light: 'blue', dark: 'darkblue'},
-	success: {light: 'green', dark: 'darkgreen'},
-	danger: {light: 'green', dark: 'darkgreen'},
-	warning: {light: 'orange', dark: 'darkorange'},
-	info: {light: 'orange', dark: 'darkorange'},
-});
+// const shadow = theme.variants('mode', 'variant', {
+// 	default: {light: '#000000', dark: '#ffffff'},
+// 	primary: {light: 'blue', dark: 'darkblue'},
+// 	secondary: {light: 'blue', dark: 'darkblue'},
+// 	success: {light: 'green', dark: 'darkgreen'},
+// 	danger: {light: 'green', dark: 'darkgreen'},
+// 	warning: {light: 'orange', dark: 'darkorange'},
+// 	info: {light: 'orange', dark: 'darkorange'},
+// });
 
 const borderRadius = {
 	sm: '4px',
