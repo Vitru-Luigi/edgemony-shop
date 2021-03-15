@@ -14,6 +14,8 @@ import ProductList from './components/ProductList';
 import Loader from './components/Loader';
 import Alert from './components/Alert';
 
+import Theme from './containers/Theme';
+
 import {Body, Main} from './styles';
 
 const App = () => {
@@ -79,19 +81,21 @@ const App = () => {
 	const closeCartModal = () => setCartOpen(false);
 
 	return (
-		<Body>
-			<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} onCartClick={openCartModal} />
-			<Main>
-				<Hero cover={data.cover} description={data.description} title={data.title} />
-				{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}
-				{apiError && <Alert msg={apiError} close={resetError} retry={toogleRetry} />}
-			</Main>
-			<ProductModal isOpen={isProductOpen} product={productInModal} close={closeProductModal} inCart={isInCart(productInModal)} addToCart={addToCart} removeFromCart={removeFromCart} />
-			<RightSideBar isOpen={isCartOpen} close={closeCartModal}>
-				<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} totalPrice={totalPrice} />
-			</RightSideBar>
-			<Footer title={data.title} />
-		</Body>
+		<Theme>
+			<Body>
+				<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} onCartClick={openCartModal} />
+				<Main>
+					<Hero cover={data.cover} description={data.description} title={data.title} />
+					{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}
+					{apiError && <Alert msg={apiError} close={resetError} retry={toogleRetry} />}
+				</Main>
+				<ProductModal isOpen={isProductOpen} product={productInModal} close={closeProductModal} inCart={isInCart(productInModal)} addToCart={addToCart} removeFromCart={removeFromCart} />
+				<RightSideBar isOpen={isCartOpen} close={closeCartModal}>
+					<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} totalPrice={totalPrice} />
+				</RightSideBar>
+				<Footer title={data.title} />
+			</Body>
+		</Theme>
 	);
 };
 

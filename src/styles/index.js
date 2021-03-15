@@ -1,4 +1,63 @@
 import styled from 'styled-components';
+import {PropTypes} from 'prop-types';
+import theme from 'styled-theming';
+
+// const bgColor = theme.variants('mode', 'variant', {
+// 	default: {light: 'gray', dark: 'darkgray'},
+// 	primary: {light: 'blue', dark: 'darkblue'},
+// 	success: {light: 'green', dark: 'darkgreen'},
+// 	warning: {light: 'orange', dark: 'darkorange'},
+// });
+const bgColor = theme.variants('mode', 'variant', {
+	default: {light: '#e5e5e5', dark: '#14213D'},
+	primary: {light: '#1266F1', dark: 'darkblue'},
+	secondary: {light: '#B23CFD', dark: 'darkblue'},
+	success: {light: '#00B74A', dark: 'darkgreen'},
+	danger: {light: '#F93154', dark: 'darkgreen'},
+	warning: {light: '#FFA900', dark: 'darkorange'},
+	info: {light: '#39C0ED', dark: 'darkorange'},
+});
+
+const color = theme.variants('mode', 'variant', {
+	default: {light: '#000000', dark: '#ffffff'},
+	primary: {light: 'blue', dark: 'darkblue'},
+	secondary: {light: 'blue', dark: 'darkblue'},
+	success: {light: 'green', dark: 'darkgreen'},
+	danger: {light: 'green', dark: 'darkgreen'},
+	warning: {light: 'orange', dark: 'darkorange'},
+	info: {light: 'orange', dark: 'darkorange'},
+});
+
+const border = theme.variants('mode', 'variant', {
+	default: {light: '1px solid rgba(41, 15, 15, 0.171)', dark: '1px solid rgba(41, 15, 15, 0.171)'},
+	primary: {light: 'blue', dark: 'darkblue'},
+	secondary: {light: 'blue', dark: 'darkblue'},
+	success: {light: 'green', dark: 'darkgreen'},
+	danger: {light: 'green', dark: 'darkgreen'},
+	warning: {light: 'orange', dark: 'darkorange'},
+	info: {light: 'orange', dark: 'darkorange'},
+});
+
+const shadow = theme.variants('mode', 'variant', {
+	default: {light: '#000000', dark: '#ffffff'},
+	primary: {light: 'blue', dark: 'darkblue'},
+	secondary: {light: 'blue', dark: 'darkblue'},
+	success: {light: 'green', dark: 'darkgreen'},
+	danger: {light: 'green', dark: 'darkgreen'},
+	warning: {light: 'orange', dark: 'darkorange'},
+	info: {light: 'orange', dark: 'darkorange'},
+});
+
+const borderRadius = {
+	sm: '4px',
+	md: '6px',
+	lg: '8px',
+};
+
+// const color = theme('mode', {
+// 	light: '#fff',
+// 	dark: '#000',
+// });
 
 // MAIN //
 export const Main = styled.main`
@@ -13,15 +72,15 @@ export const Main = styled.main`
 // BUTTON //
 
 export const Button = styled.button`
-	background-color: transparent;
+	background-color: ${bgColor};
+	color: ${color};
+	border-radius: ${borderRadius.sm};
+	border: ${border};
 	font-family: inherit;
-	border: 1px solid rgba(41, 15, 15, 0.171) !important;
 	outline: none;
-	border-radius: 4px;
 	padding: 10px;
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
-	color: black;
 	margin: 1rem 0.25rem;
 	cursor: pointer;
 	text-transform: capitalize;
@@ -38,6 +97,14 @@ export const Button = styled.button`
 	}
 `;
 
+Button.propTypes = {
+	variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']),
+};
+
+Button.defaultProps = {
+	variant: 'default',
+};
+
 // END BUTTON //
 
 // export const BlueButton = styled(Button)`
@@ -47,28 +114,28 @@ export const Button = styled.button`
 
 export const Description = styled.p`
 	background-color: transparent;
+	border-radius: 4px;
 	font-family: inherit;
 	border: 1px solid rgba(41, 15, 15, 0.171) !important;
 	outline: none;
-	border-radius: 4px;
 	padding: 10px;
 `;
 
 export const Title = styled.h3`
 	background-color: transparent;
+	border-radius: 4px;
 	font-family: inherit;
 	border: 1px solid rgba(41, 15, 15, 0.171) !important;
 	outline: none;
-	border-radius: 4px;
 	padding: 10px;
 `;
 
 export const CategoriesFilter = styled.div`
 	background-color: transparent;
+	border-radius: 4px;
 	font-family: inherit;
 	border: 1px solid rgba(41, 15, 15, 0.171) !important;
 	outline: none;
-	border-radius: 4px;
 	padding: 10px;
 `;
 
@@ -80,16 +147,27 @@ export const CategoriesFilter = styled.div`
 
 // BODY //
 export const Body = styled.div`
+	background-color: ${bgColor};
+	color: ${color};
 	height: calc(100vh - 3rem);
 	overflow: auto;
 	margin-top: 3rem;
-	/* background-color: red; */
 `;
+
+Body.propTypes = {
+	variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']),
+};
+
+Body.defaultProps = {
+	variant: 'default',
+};
 // END BODY //
 
 // CARTPRODUCT //
 
 export const CartProductContainer = styled.div`
+	background-color: ${bgColor};
+	color: ${color};
 	margin: 20px 0 30px;
 `;
 
@@ -113,15 +191,36 @@ export const CartProductPrice = styled.p`
 	font-size: 12px;
 `;
 
+CartProductContainer.propTypes = {
+	variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']),
+};
+
+CartProductContainer.defaultProps = {
+	variant: 'default',
+};
+
 // END CARTPRODUCT //
 
 // CART //
 
-export const CartContainer = styled.div``;
+export const CartContainer = styled.div`
+	background-color: ${bgColor};
+	color: ${color};
+`;
 
 export const CartTitle = styled.h2``;
 
 export const CartMsg = styled.p``;
+
+export const CartPrice = styled.div``;
+
+CartContainer.propTypes = {
+	variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']),
+};
+
+CartContainer.defaultProps = {
+	variant: 'default',
+};
 
 // END CART //
 
@@ -132,38 +231,47 @@ export const AlertMsg = styled.p``;
 
 // END ALERT //
 
-// CategoriesFilter //
+// CATEGORIESFILTER //
 
 export const CategoriesFilterContainer = styled.div``;
 
-// END CategoriesFilter //
+// END CATEGORIESFILTER //
 
-// Footer //
+// FOOTER //
 
 export const FooterContainer = styled.footer`
+	background-color: ${bgColor};
+	color: ${color};
+	box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
 	margin-top: 2rem;
 	min-height: 4rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: black;
-	color: white;
 	padding: 0.5rem;
-	box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
 `;
 export const FooterNav = styled.nav``;
 
-// END Footer //
+FooterContainer.propTypes = {
+	variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']),
+};
 
-// Header //
+FooterContainer.defaultProps = {
+	variant: 'default',
+};
+
+// END FOOTER //
+
+// HEADER //
 
 export const HeaderContainer = styled.header`
+	background-color: ${bgColor};
+	color: ${color};
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 78px;
-	background-color: black;
 	padding: 10px;
 	display: flex;
 	align-items: center;
@@ -174,12 +282,19 @@ export const HeaderImage = styled.img`
 	width: 200px;
 `;
 
-// END Header //
+HeaderContainer.propTypes = {
+	variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']),
+};
 
-// HeaderCart //
+HeaderContainer.defaultProps = {
+	variant: 'default',
+};
+
+// END HEADER //
+
+// HEADERCART //
 
 export const HeaderCartContainer = styled.div`
-	color: white;
 	margin-left: auto;
 	padding-right: 25px;
 `;
@@ -209,11 +324,13 @@ export const HeaderCartQty = styled.span`
 	font-weight: bold;
 `;
 
-// END HeaderCart //
+// END HEADERCART //
 
-// Hero //
+// HERO //
 
 export const HeroContainer = styled.section`
+	background-color: ${bgColor};
+	color: ${color};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -235,9 +352,17 @@ export const HeroDescription = styled.p`
 	margin: 1rem;
 `;
 
-// END Hero //
+HeroContainer.propTypes = {
+	variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']),
+};
 
-// Loader //
+HeroContainer.defaultProps = {
+	variant: 'default',
+};
+
+// END HERO //
+
+// LOADER //
 
 export const LoaderContainer = styled.span`
 	margin: 5% auto;
@@ -273,19 +398,21 @@ export const LoaderContainer = styled.span`
 	}
 `;
 
-// END Loader //
+// END LOADER //
 
-// Message //
+// MESSAGE //
 
 export const MessageContainer = styled.span`
 	text-align: center;
 `;
 
-// Message //
+// MESSAGE //
 
 // PRODUCT //
 
 export const ProductContainer = styled.fieldset`
+	background-color: ${bgColor};
+	color: ${color};
 	margin: 1rem auto;
 	border-radius: 7px;
 	box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
@@ -295,6 +422,14 @@ export const ProductContainer = styled.fieldset`
 	width: 25rem;
 	border: none;
 `;
+
+ProductContainer.propTypes = {
+	variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']),
+};
+
+ProductContainer.defaultProps = {
+	variant: 'default',
+};
 
 export const ProductImageWrap = styled.legend`
 	margin: 0 auto;
@@ -309,7 +444,6 @@ export const ProductImage = styled.img`
 
 export const ProductContent = styled.article`
 	border-radius: 0 7px 10px 7px;
-	background-color: #ffffff;
 `;
 
 export const ProductContentText = styled.div`
@@ -317,7 +451,6 @@ export const ProductContentText = styled.div`
 `;
 export const ProductContentTitle = styled.h3`
 	font-size: 16px;
-	color: #474747;
 	min-height: 6rem;
 	max-height: 6rem;
 	padding: 0.2rem;
@@ -329,7 +462,6 @@ export const ProductContentCategory = styled.h4`
 	font-size: 14px;
 	font-weight: 400;
 	text-transform: uppercase;
-	color: #927c7c;
 	letter-spacing: 0.1em;
 	text-align: center;
 	min-height: 2rem;
@@ -353,7 +485,7 @@ export const ProductContentPrice = styled.span`
 
 // END PRODUCT //
 
-// ProductList //
+// PRODUCTLIST //
 
 export const ProductListContainer = styled.section`
 	display: flex;
@@ -367,9 +499,9 @@ export const ProductListContainer = styled.section`
 	}
 `;
 
-// End ProductList //
+// END PRODUCTLIST //
 
-// ProductModal //
+// PRODUCTMODAL //
 
 export const ProductModalContainer = styled.div`
 	position: fixed;
@@ -429,9 +561,9 @@ export const ProductModalPrice = styled.span`
 	font-weight: bold;
 `;
 
-// END ProductModal //
+// END PRODUCTMODAL //
 
-// RightSideBar //
+// RIGHTSIDEBAR //
 export const RightSideBarContainer = styled.div`
 	position: fixed;
 	top: 0;
@@ -467,7 +599,7 @@ export const RightSideBarBody = styled.div`
 
 export const RightSideBarHeader = styled.header``;
 
-// END RightSideBar //
+// END RIGHTSIDEBAR //
 
 // SEARCH //
 export const SearchContainer = styled.div`
@@ -482,13 +614,14 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchInput = styled.input`
+	color: black;
+	background-color: transparent;
 	position: absolute;
 	// top: 0;
 	// left: 0;
 	margin: 1rem 0.25rem;
 	width: 180px;
 	height: 40px;
-	background-color: transparent;
 	font-family: inherit;
 	border: 1px solid rgba(41, 15, 15, 0.171) !important;
 	outline: none;
@@ -496,7 +629,6 @@ export const SearchInput = styled.input`
 	padding: 0 10px 0 35px;
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
-	color: black;
 	@media screen and (max-width: 880px) {
 		font-size: 8px;
 		padding: 5px;
@@ -511,23 +643,23 @@ export const SearchInput = styled.input`
 	}
 `;
 export const SearchIcon = styled.i`
+	color: black;
 	position: absolute;
+	border-right: 1px solid #fff;
 	top: 87%;
 	left: 10px;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 	padding-right: 10px;
-	color: black;
-	border-right: 1px solid #fff;
 `;
 
 // END SEARCH //
 
-// SearchBox //
+// SEARCHBOX //
 
 export const SearchBox = styled.section`
 	display: flex;
 	margin: 0.5rem;
 `;
 
-// END SEARCH //
+// END SEARCHBOX //

@@ -1,7 +1,7 @@
 import CartProduct from './CartProduct';
 import {PropTypes} from 'prop-types';
 import {formatPrice} from '../utils/utils';
-import {CartContainer, CartTitle, CartMsg} from '../styles';
+import {CartContainer, CartTitle, CartMsg, CartPrice} from '../styles';
 
 const Cart = ({products, setProductQuantity, removeFromCart, totalPrice}) => {
 	return (
@@ -11,7 +11,7 @@ const Cart = ({products, setProductQuantity, removeFromCart, totalPrice}) => {
 				products.map((product) => (
 					<>
 						<CartProduct key={product.id} product={product} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} />
-						<footer>Total: {formatPrice(totalPrice)}</footer>
+						<CartPrice>Total: {formatPrice(totalPrice)}</CartPrice>
 					</>
 				))
 			) : (

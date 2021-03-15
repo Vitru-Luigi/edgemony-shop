@@ -30,11 +30,11 @@ const ProductModal = ({product, close, isOpen, inCart, addToCart, removeFromCart
 							<Button className='detailsBtn' onClick={toggleCart}>
 								{!inCart ? (
 									<span>
-										<i class='fas fa-cart-plus'></i> Add to Cart
+										<i className='fas fa-cart-plus'></i> Add to Cart
 									</span>
 								) : (
 									<span>
-										<i class='fas fa-cart-arrow-down'></i> Remove To Cart
+										<i className='fas fa-cart-arrow-down'></i> Remove To Cart
 									</span>
 								)}
 							</Button>
