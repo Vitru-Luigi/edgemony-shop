@@ -1,15 +1,17 @@
 import PropTypes from 'prop-types';
-
+import {Link} from 'react-router-dom';
 import {formatPrice} from '../utils/utils';
 import {HeaderCartContainer, HeaderCartPrice, HeaderCartIcon} from '../styles';
 
 const HeaderCart = ({totalPrice, cartSize, onCartClick}) => (
 	<HeaderCartContainer>
 		{!!cartSize && <HeaderCartPrice>{formatPrice(totalPrice)}</HeaderCartPrice>}
-		<HeaderCartIcon onClick={onCartClick}>
-			<i className='fas fa-shopping-cart'></i>
-			{!!cartSize && <span className='qty'>{cartSize}</span>}
-		</HeaderCartIcon>
+		<Link to='/cart'>
+			<HeaderCartIcon>
+				<i className='fas fa-shopping-cart'></i>
+				{!!cartSize && <span className='qty'>{cartSize}</span>}
+			</HeaderCartIcon>
+		</Link>
 	</HeaderCartContainer>
 );
 

@@ -11,9 +11,7 @@ const Theme = ({children}) => {
 
 	return (
 		<ThemeProvider theme={{mode: theme}}>
-			<DarkModeButton style={{marginTop: '5rem'}} onClick={themeToggler}>
-				{theme}
-			</DarkModeButton>
+			<DarkModeButton onClick={themeToggler}>{theme}</DarkModeButton>
 			{children}
 		</ThemeProvider>
 	);

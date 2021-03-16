@@ -2,12 +2,6 @@ import styled from 'styled-components';
 import {PropTypes} from 'prop-types';
 import theme from 'styled-theming';
 
-// const bgColor = theme.variants('mode', 'variant', {
-// 	default: {light: 'gray', dark: 'darkgray'},
-// 	primary: {light: 'blue', dark: 'darkblue'},
-// 	success: {light: 'green', dark: 'darkgreen'},
-// 	warning: {light: 'orange', dark: 'darkorange'},
-// });
 const bgColor = theme.variants('mode', 'variant', {
 	default: {light: '#e5e5e5', dark: '#14213D'},
 	primary: {light: '#1266F1', dark: 'darkblue'},
@@ -60,6 +54,7 @@ const borderRadius = {
 // });
 
 // MAIN //
+
 export const Main = styled.main`
 	margin-top: 40px;
 	display: flex;
@@ -67,6 +62,7 @@ export const Main = styled.main`
 	align-items: center;
 	flex-direction: column;
 `;
+
 // END MAIN //
 
 // BUTTON //
@@ -109,19 +105,14 @@ Button.defaultProps = {
 
 // DARKMODEBUTTON //
 
-// END DARKMODEBUTTON //
-
 export const DarkModeButton = styled(Button)`
 	position: absolute;
-	top: -4rem;
+	top: -0.5rem;
 	right: 12rem;
 	z-index: 1000;
 `;
 
-// export const BlueButton = styled(Button)`
-// 	color: black;
-// 	background-color: red;
-// `;
+// END DARKMODEBUTTON //
 
 export const Description = styled.p`
 	background-color: transparent;
@@ -674,3 +665,56 @@ export const SearchBox = styled.section`
 `;
 
 // END SEARCHBOX //
+
+// 404
+
+export const NotFound404 = styled.div`
+	background-color: ${bgColor};
+	color: ${color};
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 10vh;
+`;
+
+NotFound404.propTypes = {
+	variant: PropTypes.oneOf(['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info']),
+};
+
+NotFound404.defaultProps = {
+	variant: 'default',
+};
+
+export const NotFoundBody = styled.div`
+	width: 90vw;
+	height: 60vh;
+	border-radius: 5px;
+	padding: 0 10px;
+	@media (min-width: 768px) {
+		width: 50vw;
+	}
+`;
+
+export const NotFoundHeader = styled.span`
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	font-size: 3rem;
+	padding-top: 10vh;
+	font-weight: 800;
+`;
+
+export const NotFoundMsg = styled.div`
+	font-size: 1.5rem;
+	height: 40vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+`;
+
+// END 404 //

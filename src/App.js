@@ -1,100 +1,55 @@
 import data from './utils/data';
-import {fetchProducts, fetchCatogories} from './services/api';
-import {useEffect, useState} from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {useState} from 'react';
 
 import './styles/scss/App.scss';
 
 import Header from './components/Header';
-import Cart from './components/Cart';
 import Footer from './components/Footer';
-import Hero from './components/Hero';
-import ProductModal from './components/ProductModal';
-import RightSideBar from './components/RightSideBar';
-import ProductList from './components/ProductList';
-import Loader from './components/Loader';
-import Alert from './components/Alert';
+
+import Home from './pages/Home';
+import Product from './pages/Product';
+import Page404 from './pages/Page404';
+import Cart from './pages/Cart';
 
 import Theme from './containers/Theme';
 
-import {Body, Main} from './styles';
-
 const App = () => {
-	const [productInModal, setProductInModal] = useState(null);
-
-	const [isProductOpen, setProductOpen] = useState(false);
-	const [isCartOpen, setCartOpen] = useState(false);
-
-	const openProductModal = (product) => {
-		setProductInModal(product);
-		setProductOpen(true);
-	};
-
-	const closeProductModal = () => {
-		setProductOpen(false);
-		setTimeout(() => {
-			setProductInModal(null);
-		}, 500);
-	};
-
-	const [products, setProducts] = useState([]);
-	const [categories, setCategories] = useState([]);
-
-	const [loading, setLoading] = useState(false);
-	const [apiError, setApiError] = useState(false);
-	const [retry, setRetry] = useState(false);
-
-	useEffect(() => {
-		setLoading(true);
-		setApiError('');
-		Promise.all([fetchProducts(), fetchCatogories()])
-			.then(([products, categories]) => {
-				setProducts(products);
-				setCategories(categories);
-			})
-			.catch((err) => setApiError(err.message))
-			.finally(() => setLoading(false));
-	}, [retry]);
-
 	const [cart, setCart] = useState([]);
-
-	const cartProducts = cart.map((cartItem) => {
-		const {price, image, title, id} = products.find((p) => p.id === cartItem.id);
-		return {price, image, title, id, quantity: cartItem.quantity};
-	});
-
-	const totalPrice = cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
-
-	const isInCart = (product) => product != null && cart.find((p) => p.id === product.id) != null;
-
-	const addToCart = (productId) => setCart([...cart, {id: productId, quantity: 1}]);
-
-	const removeFromCart = (productId) => setCart(cart.filter((product) => product.id !== productId));
-
-	const setProductQuantity = (productId, quantity) => setCart(cart.map((product) => (product.id === productId ? {...product, quantity} : product)));
-
-	const resetError = () => setApiError('');
-
-	const toogleRetry = () => setRetry(!retry);
-
-	const openCartModal = () => setCartOpen(true);
-
-	const closeCartModal = () => setCartOpen(false);
+	const totalPrice = cart.reduce((total, product) => total + product.price * product.quantity, 0);
+	function isInCart(product) {
+		return product != null && cart.find((p) => p.id === product.id) != null;
+	}
+	function addToCart(product) {
+		setCart([...cart, {...product, quantity: 1}]);
+	}
+	function removeFromCart(productId) {
+		setCart(cart.filter((product) => product.id !== productId));
+	}
+	function setProductQuantity(productId, quantity) {
+		setCart(cart.map((product) => (product.id === productId ? {...product, quantity} : product)));
+	}
 
 	return (
 		<Theme>
-			<Body>
-				<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} onCartClick={openCartModal} />
-				<Main>
-					<Hero cover={data.cover} description={data.description} title={data.title} />
-					{loading ? <Loader /> : <ProductList products={products} categories={categories} openProductModal={openProductModal} />}
-					{apiError && <Alert msg={apiError} close={resetError} retry={toogleRetry} />}
-				</Main>
-				<ProductModal isOpen={isProductOpen} product={productInModal} close={closeProductModal} inCart={isInCart(productInModal)} addToCart={addToCart} removeFromCart={removeFromCart} />
-				<RightSideBar isOpen={isCartOpen} close={closeCartModal}>
-					<Cart products={cartProducts} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} totalPrice={totalPrice} />
-				</RightSideBar>
+			<Router>
+				<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} />
+				<Switch>
+					<Route exact path='/'>
+						<Home />
+					</Route>
+					<Route path='/cart'>
+						<Cart products={cart} totalPrice={totalPrice} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} />
+					</Route>
+					<Route path='/product/:productId'>
+						<Product addToCart={addToCart} removeFromCart={removeFromCart} isInCart={isInCart} />
+					</Route>
+					<Route path='*'>
+						<Page404 />
+					</Route>
+				</Switch>
 				<Footer title={data.title} />
-			</Body>
+			</Router>
 		</Theme>
 	);
 };

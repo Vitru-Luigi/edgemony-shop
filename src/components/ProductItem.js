@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {ProductContainer, ProductImageWrap, ProductImage, ProductContent, ProductContentText, ProductContentTitle, ProductContentCategory, ProductContentDescription, ProductContentPrice, Button} from '../styles';
 import {formatPrice} from '../utils/utils';
 
-const Product = ({product, openProductModal}) => {
+const ProductItem = ({product}) => {
 	const {category, description, image, price, title} = product;
 	return (
 		<ProductContainer>
@@ -16,15 +17,17 @@ const Product = ({product, openProductModal}) => {
 					<ProductContentDescription>{description}</ProductContentDescription>
 				</ProductContentText>
 				<ProductContentPrice>Price : {formatPrice(price)}</ProductContentPrice>
-				<Button onClick={openProductModal}>View details</Button>
+				<Link to={`/product/${product.id}`}>
+					<Button>View details</Button>
+				</Link>
 			</ProductContent>
 		</ProductContainer>
 	);
 };
 
-Product.propTypes = {
+ProductItem.propTypes = {
 	product: PropTypes.object.isRequired,
 	openProductModal: PropTypes.func.isRequired,
 };
 
-export default Product;
+export default ProductItem;
