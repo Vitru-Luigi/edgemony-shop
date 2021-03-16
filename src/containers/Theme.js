@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {ThemeProvider} from 'styled-components';
-import {Button} from '../styles';
+import {DarkModeButton} from '../styles';
 
 const Theme = ({children}) => {
 	const [theme, setTheme] = useState('light');
@@ -11,9 +11,9 @@ const Theme = ({children}) => {
 
 	return (
 		<ThemeProvider theme={{mode: theme}}>
-			<Button style={{marginTop: '5rem'}} onClick={themeToggler}>
+			<DarkModeButton style={{marginTop: '5rem'}} onClick={themeToggler}>
 				{theme}
-			</Button>
+			</DarkModeButton>
 			{children}
 		</ThemeProvider>
 	);

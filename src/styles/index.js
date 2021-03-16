@@ -29,7 +29,7 @@ const color = theme.variants('mode', 'variant', {
 });
 
 const border = theme.variants('mode', 'variant', {
-	default: {light: '1px solid rgba(41, 15, 15, 0.171)', dark: '1px solid rgba(41, 15, 15, 0.171)'},
+	default: {light: '1px solid rgba(41, 15, 15, 0.171)', dark: '1px solid rgba(200, 177, 177, 0.445)'},
 	primary: {light: 'blue', dark: 'darkblue'},
 	secondary: {light: 'blue', dark: 'darkblue'},
 	success: {light: 'green', dark: 'darkgreen'},
@@ -106,6 +106,17 @@ Button.defaultProps = {
 };
 
 // END BUTTON //
+
+// DARKMODEBUTTON //
+
+// END DARKMODEBUTTON //
+
+export const DarkModeButton = styled(Button)`
+	position: absolute;
+	top: -4rem;
+	right: 12rem;
+	z-index: 1000;
+`;
 
 // export const BlueButton = styled(Button)`
 // 	color: black;
