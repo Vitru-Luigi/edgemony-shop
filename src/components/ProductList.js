@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import Product from './Product';
+import ProductItem from './ProductItem';
 import Message from './Message';
 import {ProductListContainer, SearchBox} from '../styles';
 import PropTypes from 'prop-types';
@@ -7,12 +7,13 @@ import Search from './Search';
 
 import CategoriesFilter from './CategoriesFilter';
 
-const ProductList = ({products, categories, cart, setCart, openProductModal}) => {
+const ProductList = ({products, categories, cart, setCart}) => {
 	const [searchTerm, setSearchTerm] = useState();
 	const [selectedCategories, setSelectedCategories] = useState([]);
 
 	const termRegexp = new RegExp(searchTerm, 'i');
 	const filteredProducts = products.filter((p) => p.title.search(termRegexp) !== -1 && (selectedCategories.length === 0 || selectedCategories.includes(p.category)));
+
 	return (
 		<>
 			<SearchBox>
@@ -21,7 +22,7 @@ const ProductList = ({products, categories, cart, setCart, openProductModal}) =>
 			</SearchBox>
 			<ProductListContainer>
 				{filteredProducts.map((product, key) => (
-					<Product key={key} product={product} cart={cart} setCart={setCart} openProductModal={() => openProductModal(product)} />
+					<ProductItem key={key} product={product} cart={cart} setCart={setCart} />
 				))}
 				{filteredProducts.length === 0 && <Message msg={'Product not found'} />}
 			</ProductListContainer>
