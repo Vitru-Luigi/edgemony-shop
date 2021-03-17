@@ -9,21 +9,27 @@ import Alert from '../components/Alert';
 
 import {Body, Main} from '../styles';
 
+let cache;
+
 const Home = () => {
-	const [products, setProducts] = useState([]);
-	const [categories, setCategories] = useState([]);
+	const [products, setProducts] = useState(cache ? cache.products : []);
+	const [categories, setCategories] = useState(cache ? cache.categories : []);
 
 	const [loading, setLoading] = useState(false);
 	const [apiError, setApiError] = useState(false);
 	const [retry, setRetry] = useState(false);
 
 	useEffect(() => {
+		if (!!cache) {
+			return;
+		}
 		setLoading(true);
 		setApiError('');
 		Promise.all([fetchProducts(), fetchCatogories()])
 			.then(([products, categories]) => {
 				setProducts(products);
 				setCategories(categories);
+				cache = {products, categories};
 			})
 			.catch((err) => setApiError(err.message))
 			.finally(() => setLoading(false));
