@@ -35,17 +35,17 @@ const App = () => {
 			<Router>
 				<Header logo={data.logo} title={data.title} totalPrice={totalPrice} cartSize={cart.length} />
 				<Switch>
-					<Route exact path='/cart'>
+					<Route exact path='/'>
+						<Home />
+					</Route>
+					<Route path='/cart'>
 						<Cart products={cart} totalPrice={totalPrice} removeFromCart={removeFromCart} setProductQuantity={setProductQuantity} />
 					</Route>
-					<Route exact path='/product/:productId'>
+					<Route path='/product/:productId'>
 						<Product addToCart={addToCart} removeFromCart={removeFromCart} isInCart={isInCart} />
 					</Route>
-					{/* <Route path='/*'>
+					<Route path='*'>
 						<Page404 />
-					</Route> */}
-					<Route path='/'>
-						<Home />
 					</Route>
 				</Switch>
 				<Footer title={data.title} />
