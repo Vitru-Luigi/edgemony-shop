@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {formatPrice} from '../utils/utils';
 import {HeaderCartContainer, HeaderCartPrice, HeaderCartIcon} from '../styles';
 
-const HeaderCart = ({totalPrice, cartSize, onCartClick}) => (
+const HeaderCart = ({totalPrice, cartSize}) => (
 	<HeaderCartContainer>
 		{!!cartSize && <HeaderCartPrice>{formatPrice(totalPrice)}</HeaderCartPrice>}
 		<Link to='/cart'>
@@ -18,7 +18,6 @@ const HeaderCart = ({totalPrice, cartSize, onCartClick}) => (
 HeaderCart.propTypes = {
 	totalPrice: PropTypes.number.isRequired,
 	cartSize: PropTypes.number.isRequired,
-	onCartClick: PropTypes.func.isRequired,
 };
 
 export default HeaderCart;

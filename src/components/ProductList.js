@@ -7,7 +7,7 @@ import Search from './Search';
 
 import CategoriesFilter from './CategoriesFilter';
 
-const ProductList = ({products, categories, cart, setCart}) => {
+const ProductList = ({products, categories}) => {
 	const [searchTerm, setSearchTerm] = useState();
 	const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -22,7 +22,7 @@ const ProductList = ({products, categories, cart, setCart}) => {
 			</SearchBox>
 			<ProductListContainer>
 				{filteredProducts.map((product, key) => (
-					<ProductItem key={key} product={product} cart={cart} setCart={setCart} />
+					<ProductItem key={key} product={product} />
 				))}
 				{filteredProducts.length === 0 && <Message msg={'Product not found'} />}
 			</ProductListContainer>

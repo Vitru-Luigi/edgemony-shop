@@ -3,12 +3,12 @@ import HeaderCart from './HeaderCart';
 import {HeaderContainer, HeaderImage} from '../styles';
 import {Link} from 'react-router-dom';
 
-const Header = ({logo, title, totalPrice, cartSize, onCartClick}) => (
+const Header = ({logo, title, totalPrice, cartSize}) => (
 	<HeaderContainer>
 		<Link to='/'>
 			<HeaderImage src={logo} alt={title} />
 		</Link>
-		<HeaderCart totalPrice={totalPrice} cartSize={cartSize} onCartClick={onCartClick} />
+		<HeaderCart totalPrice={totalPrice} cartSize={cartSize} />
 	</HeaderContainer>
 );
 
@@ -17,7 +17,6 @@ Header.propTypes = {
 	title: PropTypes.string.isRequired,
 	totalPrice: PropTypes.number.isRequired,
 	cartSize: PropTypes.number.isRequired,
-	onCartClick: PropTypes.func.isRequired,
 };
 
 export default Header;

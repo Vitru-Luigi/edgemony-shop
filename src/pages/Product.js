@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import Alert from '../components/Alert';
 import Loader from '../components/Loader';
 import {fetchProduct} from '../services/api';
-import {ProductContainer, ProductImageWrap, ProductImage, ProductContent, ProductContentText, ProductContentTitle, ProductContentCategory, ProductContentDescription, ProductContentPrice, Button} from '../styles';
+import {ProductContainer, ProductImage, ProductContent, ProductContentText, ProductContentTitle, ProductContentCategory, ProductContentDescription, ProductContentPrice, Button} from '../styles';
 import {formatPrice} from '../utils/utils';
 
 const Product = ({addToCart, removeFromCart, isInCart}) => {
@@ -47,27 +47,27 @@ const Product = ({addToCart, removeFromCart, isInCart}) => {
 				<Alert msg={apiError} close={resetError} retry={toogleRetry} />
 			) : (
 				<ProductContainer>
-					<ProductImageWrap>
-						<ProductImage src={image} alt='' />
-					</ProductImageWrap>
+					<ProductImage src={image} alt='' />
 					<ProductContent>
 						<ProductContentText>
 							<ProductContentTitle>{title}</ProductContentTitle>
 							<ProductContentCategory>{category}</ProductContentCategory>
 							<ProductContentDescription>{description}</ProductContentDescription>
 						</ProductContentText>
-						<Button type='button' className='handleCartBtn' onClick={toggleCart}>
-							{isInCart(product) ? (
-								<span>
-									<i className='fas fa-cart-plus'></i> Add to Cart
-								</span>
-							) : (
-								<span>
-									<i className='fas fa-cart-arrow-down'></i> Remove To Cart
-								</span>
-							)}
-						</Button>
-						<ProductContentPrice>Price : {formatPrice(price)}</ProductContentPrice>
+						<ProductContentPrice>
+							<Button type='button' className='handleCartBtn' onClick={toggleCart}>
+								{!isInCart(product) ? (
+									<span>
+										<i className='fas fa-cart-plus'></i> Add to Cart
+									</span>
+								) : (
+									<span>
+										<i className='fas fa-cart-arrow-down'></i> Remove To Cart
+									</span>
+								)}
+							</Button>
+							Price : {formatPrice(price)}
+						</ProductContentPrice>
 					</ProductContent>
 				</ProductContainer>
 			)}
@@ -76,8 +76,9 @@ const Product = ({addToCart, removeFromCart, isInCart}) => {
 };
 
 Product.propTypes = {
-	product: PropTypes.object.isRequired,
-	openProductModal: PropTypes.func.isRequired,
+	addToCart: PropTypes.func.isRequired,
+	removeFromCart: PropTypes.func.isRequired,
+	isInCart: PropTypes.func.isRequired,
 };
 
 export default Product;
